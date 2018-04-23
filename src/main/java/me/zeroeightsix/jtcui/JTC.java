@@ -3,7 +3,7 @@ package me.zeroeightsix.jtcui;
 import me.zeroeightsix.jtcui.component.Container;
 import me.zeroeightsix.jtcui.component.SimpleContainer;
 import me.zeroeightsix.jtcui.handle.JTCMouseHandler;
-import me.zeroeightsix.jtcui.layout.FixedLayout;
+import me.zeroeightsix.jtcui.layout.layouts.FixedLayout;
 
 /**
  * Created by 086 on 23/04/2018.
@@ -18,6 +18,14 @@ public class JTC {
      */
     public JTC() {
         mouse = new JTCMouseHandler(this);
+    }
+
+    /**
+     * Get the root component of this JTC instance
+     * @return
+     */
+    public Container getRootComponent() {
+        return rootComponent;
     }
 
     /**

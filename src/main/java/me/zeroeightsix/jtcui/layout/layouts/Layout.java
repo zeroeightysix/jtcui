@@ -1,4 +1,4 @@
-package me.zeroeightsix.jtcui.layout;
+package me.zeroeightsix.jtcui.layout.layouts;
 
 import me.zeroeightsix.jtcui.component.Component;
 

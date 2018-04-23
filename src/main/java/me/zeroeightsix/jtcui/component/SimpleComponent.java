@@ -1,7 +1,7 @@
 package me.zeroeightsix.jtcui.component;
 
-import me.zeroeightsix.jtcui.layout.Layout;
-import me.zeroeightsix.jtcui.layout.ParentLayout;
+import me.zeroeightsix.jtcui.layout.layouts.Layout;
+import me.zeroeightsix.jtcui.layout.layouts.ParentLayout;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class SimpleComponent implements Component {
 
-    private int x,y;
+    private int x,y,width,height;
     private Component parent;
     private Layout layout;
 
@@ -53,6 +53,26 @@ public class SimpleComponent implements Component {
     @Override
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public int getHeight() {
+        return height;
+    }
+
+    @Override
+    public int getWidth() {
+        return width;
+    }
+
+    @Override
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    @Override
+    public void setWidth(int width) {
+        this.width = width;
     }
 
     @Override
