@@ -24,12 +24,13 @@ public class SimpleContainer extends SimpleComponent implements Container {
 
     @Override
     public List<Component> addAll(Collection<Component> components) {
-        this.components.addAll(components);
+        components.forEach(this::add);
         return this.components;
     }
 
     @Override
     public List<Component> add(Component component) {
+        component.setParent(this);
         components.add(component);
         return components;
     }
