@@ -1,27 +1,14 @@
 package me.zeroeightsix.jtcui.handle;
 
-import me.zeroeightsix.jtcui.component.Component;
-
 /**
  * Created by 086 on 21/05/2018.
  */
 public interface RenderHandler {
 
     /**
-     * Called when rendering starts
+     * Render the current scene
      */
-    void start();
-
-    /**
-     * Called when rendering stops
-     */
-    void stop();
-
-    /**
-     * Draw the requested component at position 0,0
-     * @param component
-     */
-    void draw(Component component);
+    void render();
 
     /**
      * Defines the scissor box. See openGL's glScissor.
