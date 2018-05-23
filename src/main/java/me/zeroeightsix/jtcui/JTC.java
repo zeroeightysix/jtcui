@@ -29,7 +29,7 @@ public class JTC {
      */
     public JTC(RenderHandler render) {
         this.render = render;
-        mouse = new JTCMouseHandler(this);
+        mouse = new JTCMouseHandler();
     }
 
     /**
@@ -39,6 +39,13 @@ public class JTC {
     public JTC(RenderHandler render, MouseHandler mouse) {
         this.render = render;
         this.mouse = mouse;
+    }
+
+    /**
+     * Render the current scene
+     */
+    public void render() {
+        this.render.render(this);
     }
 
     /**
@@ -90,9 +97,32 @@ public class JTC {
     }
 
     private class JTCRootComponent extends SimpleContainer {
+        private final ComponentHandle handle;
+
         public JTCRootComponent() {
             super(0,0);
             setLayout(new FixedLayout());
+            handle = new ComponentHandle() {
+                @Override
+                public void draw(Component component) {
+
+                }
+
+                @Override
+                public int getDefaultWidth(Component component) {
+                    return 0;
+                }
+
+                @Override
+                public int getDefaultHeight(Component component) {
+                    return 0;
+                }
+            };
+        }
+
+        @Override
+        public ComponentHandle getHandle() {
+            return handle;
         }
     }
 }

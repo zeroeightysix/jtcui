@@ -14,40 +14,18 @@ import me.zeroeightsix.jtcui.JTC;
  */
 public class JTCMouseHandler implements MouseHandler {
 
-    private final JTC theJTC;
-
-    public JTCMouseHandler(JTC theJTC) {
-        this.theJTC = theJTC;
-    }
-
-    /**
-     * The specified button has been pressed down at location x, y
-     * @param x
-     * @param y
-     * @param button
-     */
-    public void down(int x, int y, int button) {
+    @Override
+    public void down(JTC theJTC, int x, int y, int button) {
 
     }
 
-    /**
-     * The specified button has been released at location x, y
-     * @param x
-     * @param y
-     * @param button
-     */
-    public void up(int x, int y, int button) {
+    @Override
+    public void up(JTC theJTC, int x, int y, int button) {
 
     }
 
-    /**
-     * The specified button has been moved to location x, y
-     * @param x
-     * @param y
-     * @param button
-     */
-    public void move(int x, int y, int button) {
+    @Override
+    public void move(JTC theJTC, int x, int y, int button) {
 
     }
-
 }
