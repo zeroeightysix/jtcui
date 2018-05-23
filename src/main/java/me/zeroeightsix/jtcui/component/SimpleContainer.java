@@ -13,8 +13,8 @@ public class SimpleContainer extends SimpleComponent implements Container {
 
     List<Component> components = new ArrayList<>();
 
-    public SimpleContainer(int x, int y, Component parent) {
-        super(x, y, parent);
+    public SimpleContainer(int x, int y) {
+        super(x, y);
     }
 
     @Override

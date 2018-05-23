@@ -12,7 +12,7 @@ import me.zeroeightsix.jtcui.JTC;
  * 2 - Middle mouse button click<br>
  * 3, 4, ... - Extra buttons<br>
  */
-public class JTCMouseHandler {
+public class JTCMouseHandler implements MouseHandler {
 
     private final JTC theJTC;
 

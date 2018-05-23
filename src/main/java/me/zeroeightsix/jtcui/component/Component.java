@@ -1,5 +1,6 @@
 package me.zeroeightsix.jtcui.component;
 
+import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.layout.layouts.Layout;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public interface Component {
     int getHeight();
     void setWidth(int width);
     void setHeight(int height);
+    ComponentHandle getHandle();
 
     Layout getLayout();
     void setLayout(Layout layout);
