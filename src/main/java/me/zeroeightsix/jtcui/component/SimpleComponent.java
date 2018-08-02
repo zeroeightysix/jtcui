@@ -1,8 +1,10 @@
 package me.zeroeightsix.jtcui.component;
 
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
+import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.layout.layouts.Layout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,20 +12,34 @@ import java.util.List;
  */
 public class SimpleComponent implements Component {
 
-    private int x,y,width,height;
+    private int x, y, width, height;
     private Component parent;
     private Layout layout;
+    private ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
+
+    public SimpleComponent() {
+        this(0,0);
+    }
 
     public SimpleComponent(int x, int y) {
         setX(x);
         setY(y);
-//        setParent(parent);
-//        setLayout(new ParentLayout(getParent().getLayout()));
+    }
+
+    public SimpleComponent(int x, int y, int width, int height) {
+        this(x, y);
+        setWidth(width);
+        setHeight(height);
     }
 
     @Override
     public Component getParent() {
         return parent;
+    }
+
+    @Override
+    public Component explore(int x, int y) {
+        return this;
     }
 
     public void setParent(Component parent) {
@@ -88,6 +104,11 @@ public class SimpleComponent implements Component {
     @Override
     public ComponentHandle getHandle() {
         return null;
+    }
+
+    @Override
+    public ArrayList<MouseHandler> getMouseHandlers() {
+        return mouseHandlers;
     }
 
 }

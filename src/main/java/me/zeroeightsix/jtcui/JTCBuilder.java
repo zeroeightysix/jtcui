@@ -8,19 +8,18 @@ import me.zeroeightsix.jtcui.handle.RenderHandler;
  * Created by 086 on 23/05/2018.
  */
 public class JTCBuilder {
-    
+
     private RenderHandler renderHandler;
     private MouseHandler mouseHandler = null;
 
-    JTCBuilder(RenderHandler renderHandler)
-    {
+    JTCBuilder(RenderHandler renderHandler) {
         this.renderHandler = renderHandler;
     }
 
     public static JTCBuilder builder(RenderHandler renderHandler) {
         return new JTCBuilder(renderHandler);
     }
-    
+
     public JTCBuilder withRenderHandler(RenderHandler renderHandler) {
         this.renderHandler = renderHandler;
         return this;
@@ -32,7 +31,9 @@ public class JTCBuilder {
     }
 
     public JTC build() {
-        return new JTC(renderHandler, mouseHandler == null ? new JTCMouseHandler() : mouseHandler);
+        JTC jtc = new JTC();
+        jtc.setHandlers(renderHandler, mouseHandler == null ? new JTCMouseHandler(jtc) : mouseHandler);
+        return jtc;
     }
-    
+
 }

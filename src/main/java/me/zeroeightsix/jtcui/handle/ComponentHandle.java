@@ -8,7 +8,6 @@ import me.zeroeightsix.jtcui.component.Component;
 public interface ComponentHandle<T extends Component> {
 
     void draw(T component);
-    int getDefaultWidth(T component);
-    int getDefaultHeight(T component);
+    void onMouse(T component, MouseHandler.MouseAction action, int x, int y, int button);
 
 }

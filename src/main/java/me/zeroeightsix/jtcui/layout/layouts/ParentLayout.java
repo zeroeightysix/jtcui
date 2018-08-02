@@ -4,7 +4,7 @@ import me.zeroeightsix.jtcui.component.Component;
 
 /**
  * Created by 086 on 23/04/2018.<br>
- *
+ * <p>
  * A layout that relies on its parent to organise for them.
  * Layouts are so spoiled these days. Sigh.
  */

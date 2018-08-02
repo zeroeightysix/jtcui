@@ -1,6 +1,7 @@
 package me.zeroeightsix.jtcui.component;
 
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
+import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.layout.layouts.Layout;
 
 import java.util.List;
@@ -10,21 +11,24 @@ import java.util.List;
  */
 public interface Component {
 
-    Component getParent();
-    void setParent(Component component);
-    List<Component> getChildren();
-
     int getX();
     int getY();
-    void setX(int x);
-    void setY(int y);
     int getWidth();
     int getHeight();
+    void setX(int x);
     void setWidth(int width);
     void setHeight(int height);
-    ComponentHandle getHandle();
+    void setY(int y);
 
+    Component getParent();
+    List<Component> getChildren();
     Layout getLayout();
+    ComponentHandle getHandle();
+    List<MouseHandler> getMouseHandlers();
+
+    void setParent(Component component);
     void setLayout(Layout layout);
+
+    Component explore(int x, int y);
 
 }

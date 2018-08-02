@@ -15,12 +15,13 @@ public interface RenderHandler {
     /**
      * Defines the scissor box. See openGL's glScissor.
      * This method is expected to also enable the scissor test.
-     * @param top The y coordinate of the top left corner
-     * @param left The x coordinate of the top left corner
+     *
+     * @param top    The y coordinate of the top left corner
+     * @param left   The x coordinate of the top left corner
      * @param bottom The y coordinate of the bottom right corner
-     * @param right The x coordinate of the bottom right corner
+     * @param right  The x coordinate of the bottom right corner
      */
-    void scisssor(int top, int left, int bottom, int right);
+    void scissor(int top, int left, int bottom, int right);
 
     /**
      * Disable the scissor test
@@ -29,6 +30,7 @@ public interface RenderHandler {
 
     /**
      * Move the current translation
+     *
      * @param x Amount to add to the current translation on the x axis
      * @param y Amount to add to the current translation on the y axis
      */

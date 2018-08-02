@@ -8,6 +8,7 @@ import me.zeroeightsix.jtcui.component.Component;
 public interface Layout {
 
     Layout getParent();
+
     void organise(Component component);
 
 }

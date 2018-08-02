@@ -19,7 +19,7 @@ public enum Alignment {
     boolean isLeft;
     boolean isRight;
 
-    Alignment (boolean isTop, boolean isBottom, boolean isLeft, boolean isRight) {
+    Alignment(boolean isTop, boolean isBottom, boolean isLeft, boolean isRight) {
         this.isTop = isTop;
         this.isBottom = isBottom;
         this.isLeft = isLeft;

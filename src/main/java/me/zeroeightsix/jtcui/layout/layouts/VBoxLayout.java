@@ -1,76 +1,72 @@
 package me.zeroeightsix.jtcui.layout.layouts;
 
 import me.zeroeightsix.jtcui.component.Component;
+import me.zeroeightsix.jtcui.component.Container;
 import me.zeroeightsix.jtcui.layout.Alignment;
-import me.zeroeightsix.jtcui.layout.Grow;
-import me.zeroeightsix.jtcui.layout.Padding;
 
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Stream;
 
 /**
  * Created by 086 on 23/04/2018.
  */
-public class VBoxLayout extends FixedLayout {
-
+public class VBoxLayout extends SpacedLayout {
     private Alignment componentAlignment = Alignment.TOP_LEFT;
-    private HashMap<Component, Grow> growMap = new HashMap<>();
-    private int spacing = 0;
-    private Padding padding = Padding.NO_PADDING;
+    private static Set<Component> fillWidth = new HashSet<>();
 
     @Override
     public void organise(Component component) {
-        Optional.of(component.getChildren()).ifPresent(children -> {
-            final int padWidth = component.getWidth() - getPadding().getLeft() - getPadding().getRight();
-            final int padHeight = component.getHeight() - getPadding().getTop() - getPadding().getBottom();
-            AtomicInteger spaceLeft = new AtomicInteger(padHeight);
-
-            children.stream().filter(component1 -> getGrow(component1) == Grow.NONE).forEach(component1 -> {
-                component.setWidth(padWidth);
-                spaceLeft.addAndGet(-component.getHeight());
-            });
-
-            Stream<Component> componentStream = children.stream().filter(component1 -> getGrow(component1) == Grow.ALWAYS);
-            final int perNode = (int) (spaceLeft.get()-(spacing*componentStream.count()));
-            componentStream.forEach(component1 -> {
-                component.setWidth(padWidth);
-                component.setHeight(perNode);
-            });
-
-            final int totalHeight = children.stream().mapToInt(Component::getHeight).sum() + (spacing * children.size());
-            int position = componentAlignment.isTop() ? getPadding().getTop() :
-                    componentAlignment.isBottom() ? padHeight - totalHeight - (spacing * children.size()) :
-                            padHeight / 2 - totalHeight / 2;
-            for (Component c : children) {
-                c.setX(componentAlignment.isLeft() ? getPadding().getLeft() :
-                        (componentAlignment.isRight() ? component.getWidth() - getPadding().getRight() - c.getWidth() :
-                                padWidth / 2  - (c.getWidth() / 2)));
-                c.setY(position);
-                position += c.getHeight() + getSpacing();
+        Optional.of(component.getChildren()).ifPresent(components -> {
+            int fullWidth = component.getWidth() - getPadding().getLeft() - getPadding().getRight();
+            int fullHeight = component.getHeight() - getPadding().getTop() - getPadding().getBottom();
+            final int finalLeft = getPadding().getLeft();
+            if (component instanceof Container) {
+                Container container = (Container) component;
+                fullWidth -= finalLeft + container.getFatRight() + container.getFatLeft();
+                fullHeight -= container.getFatTop() + container.getFatBottom();
             }
+            final int finalFullWidth = fullWidth;
+            List<Component> toGrow = new ArrayList<>();
+            AtomicInteger spaceLeft = new AtomicInteger(fullHeight - components.size() * getSpacing());
+            components.forEach(child -> {
+                if (doesFillWidth(child)) {
+                    child.setWidth(finalFullWidth);
+                    child.setX(finalLeft);
+                } else
+                    align(finalLeft, finalFullWidth, child);
+                if (doesGrow(component))
+                    toGrow.add(component);
+                else
+                    spaceLeft.addAndGet(-component.getHeight());
+            });
+            if (!toGrow.isEmpty()) {
+                int per = spaceLeft.get() / toGrow.size();
+                toGrow.forEach(child -> child.setHeight(per));
+            }
+            AtomicInteger y = new AtomicInteger(getPadding().getTop());
+            components.forEach(child -> {
+                child.setY(y.get());
+                y.addAndGet(child.getHeight() + getSpacing());
+            });
         });
     }
 
-    public Padding getPadding() {
-        return padding;
+    private void align(int left, int fullWidth, Component child) {
+        if (componentAlignment.isLeft()) child.setX(0);
+        else if (componentAlignment.isCenterHorizontal()) child.setX(left + fullWidth / 2 + child.getWidth() / 2);
+        else child.setX(left + fullWidth - child.getWidth());
     }
 
-    public void setPadding(Padding padding) {
-        this.padding = padding;
+    public static void setFillWidth(Component component, boolean fillWidth) {
+        if (fillWidth)
+            VBoxLayout.fillWidth.add(component);
+        else
+            VBoxLayout.fillWidth.remove(component);
+        Optional.of(component.getParent()).ifPresent(parent -> parent.getLayout().organise(parent));
     }
 
-    public int getSpacing() {
-        return spacing;
-    }
-
-    public void setSpacing(int spacing) {
-        this.spacing = spacing;
-    }
-
-    protected Grow getGrow(Component component) {
-        return growMap.getOrDefault(component, Grow.NONE);
+    public static boolean doesFillWidth(Component component) {
+        return VBoxLayout.fillWidth.contains(component);
     }
 
 }

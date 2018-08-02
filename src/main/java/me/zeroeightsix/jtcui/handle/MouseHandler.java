@@ -8,25 +8,15 @@ import me.zeroeightsix.jtcui.JTC;
 public interface MouseHandler {
 
     /**
-     * The specified button has been pressed down at location x, y
-     * @param x
-     * @param y
-     * @param button
+     * @param action The action performed (e.g. drag)
+     * @param x The x position of the mouse when the action occured
+     * @param y The y position of the mouse when the action occured
+     * @param button The button pressed on the mouse
      */
-    void down(JTC theJTC, int x, int y, int button);
-    /**
-     * The specified button has been released at location x, y
-     * @param x
-     * @param y
-     * @param button
-     */
-    void up(JTC theJTC, int x, int y, int button);
-    /**
-     * The specified button has been moved to location x, y
-     * @param x
-     * @param y
-     * @param button
-     */
-    void move(JTC theJTC, int x, int y, int button);
+    void onMouse(MouseAction action, int x, int y, int button);
+
+    enum MouseAction {
+        DOWN,MOVE,DRAG, RELEASE;
+    }
 
 }

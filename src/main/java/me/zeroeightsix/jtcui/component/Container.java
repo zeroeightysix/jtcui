@@ -8,7 +8,9 @@ import java.util.List;
  */
 public interface Container extends Component {
 
-    List<Component> add(Component component);
-    List<Component> addAll(Collection<Component> components);
+    int getFatTop();
+    int getFatLeft();
+    int getFatRight();
+    int getFatBottom();
 
 }

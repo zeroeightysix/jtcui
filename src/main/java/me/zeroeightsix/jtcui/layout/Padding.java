@@ -5,9 +5,9 @@ package me.zeroeightsix.jtcui.layout;
  */
 public class Padding {
 
-    public static final Padding NO_PADDING = new Padding(0,0,0,0);
+    public static final Padding NO_PADDING = new Padding(0, 0, 0, 0);
 
-    private int left,top,right,bottom;
+    private int left, top, right, bottom;
 
     public Padding(int left, int top, int right, int bottom) {
         this.left = left;
