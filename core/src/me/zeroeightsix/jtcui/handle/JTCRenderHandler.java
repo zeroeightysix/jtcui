@@ -19,10 +19,4 @@ public abstract class JTCRenderHandler implements RenderHandler {
             for (Component child : children) recursiveRender(theJTC, component);
     }
 
-    @Override
-    public void render(JTC theJTC) {
-        Container root = theJTC.getRootComponent();
-        recursiveRender(theJTC, root);
-    }
-
 }

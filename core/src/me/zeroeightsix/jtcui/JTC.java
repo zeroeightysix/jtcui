@@ -169,6 +169,11 @@ public class JTC {
                 public void onMouse(Component component, MouseHandler.MouseAction action, int x, int y, int button) {
 
                 }
+
+                @Override
+                public void onScroll(Component component, int scrolled, int x, int y) {
+
+                }
             };
         }
 

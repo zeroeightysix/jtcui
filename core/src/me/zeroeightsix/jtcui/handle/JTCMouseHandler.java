@@ -34,6 +34,16 @@ public class JTCMouseHandler implements MouseHandler {
         });
     }
 
+    @Override
+    public void onScroll(int scrolled, int x, int y) {
+        funnel(theJTC, x, y).ifPresent(c -> {
+            Point position = theJTC.getRealPosition(c);
+            int nx = x-position.getX(), ny = y-position.getY();
+            theJTC.getComponentHandle(c).onScroll(c, scrolled, nx, ny);
+            c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onScroll(scrolled, nx, ny));
+        });
+    }
+
     protected Optional<Component> funnel(JTC theJTC, int x, int y) {
         if (x < theJTC.getRootComponent().getX() || y < theJTC.getRootComponent().getY()) return Optional.empty();
         Component c = theJTC.getRootComponent().explore(x - theJTC.getRootComponent().getX(), y - theJTC.getRootComponent().getY());

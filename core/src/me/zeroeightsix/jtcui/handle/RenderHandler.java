@@ -8,11 +8,6 @@ import me.zeroeightsix.jtcui.JTC;
 public interface RenderHandler {
 
     /**
-     * Render the current scene
-     */
-    void render(JTC theJTC);
-
-    /**
      * Defines the scissor box. See openGL's glScissor.
      * This method is expected to also enable the scissor test.
      *

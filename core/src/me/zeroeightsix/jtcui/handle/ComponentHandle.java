@@ -9,5 +9,6 @@ public interface ComponentHandle<T extends Component> {
 
     void draw(T component);
     void onMouse(T component, MouseHandler.MouseAction action, int x, int y, int button);
+    void onScroll(T component, int scrolled, int x, int y);
 
 }
