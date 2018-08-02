@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GLContext;
 
 /**
  * @author 086

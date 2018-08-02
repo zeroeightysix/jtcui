@@ -1,114 +1,59 @@
 package me.zeroeightsix.jtcui.component;
 
-import me.zeroeightsix.jtcui.handle.ComponentHandle;
-import me.zeroeightsix.jtcui.handle.MouseHandler;
-import me.zeroeightsix.jtcui.layout.layouts.Layout;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Consumer;
 
 /**
- * Created by 086 on 23/04/2018.
+ * @author 086
  */
-public class SimpleComponent implements Component {
-
-    private int x, y, width, height;
-    private Component parent;
-    private Layout layout;
-    private ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
+public class SimpleComponent extends BaseComponent implements Toggleable, Labeled, Actionable<SimpleComponent> {
+    private boolean enabled;
+    Consumer<SimpleComponent> action;
+    String text;
+    boolean textWrapping = true;
 
     public SimpleComponent() {
-        this(0,0);
     }
 
     public SimpleComponent(int x, int y) {
-        setX(x);
-        setY(y);
+        super(x, y);
     }
 
     public SimpleComponent(int x, int y, int width, int height) {
-        this(x, y);
-        setWidth(width);
-        setHeight(height);
+        super(x, y, width, height);
     }
 
     @Override
-    public Component getParent() {
-        return parent;
+    public boolean isEnabled() {
+        return enabled;
     }
 
     @Override
-    public Component explore(int x, int y) {
-        return this;
-    }
-
-    public void setParent(Component parent) {
-        this.parent = parent;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
-    public List<Component> getChildren() {
-        return null;
+    public void setOnAction(Consumer<SimpleComponent> action) {
+        this.action = action;
     }
 
     @Override
-    public int getX() {
-        return x;
+    public String getText() {
+        return text;
     }
 
     @Override
-    public int getY() {
-        return y;
+    public void setText(String text) {
+        this.text = text;
     }
 
     @Override
-    public void setX(int x) {
-        this.x = x;
+    public boolean isWrapping() {
+        return textWrapping;
     }
 
     @Override
-    public void setY(int y) {
-        this.y = y;
+    public void setWrapping(boolean wrapping) {
+        this.textWrapping = wrapping;
     }
-
-    @Override
-    public int getHeight() {
-        return height;
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    @Override
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    @Override
-    public Layout getLayout() {
-        return layout;
-    }
-
-    @Override
-    public void setLayout(Layout layout) {
-        this.layout = layout;
-    }
-
-    @Override
-    public ComponentHandle getHandle() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<MouseHandler> getMouseHandlers() {
-        return mouseHandlers;
-    }
-
 }
