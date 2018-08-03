@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class BaseComponent implements Component {
 
-    private int x, y, width, height;
+    private int x, y, width, height, minimumWidth, minimumHeight;
     private Component parent;
     private Layout layout;
     private ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
@@ -77,6 +77,16 @@ public class BaseComponent implements Component {
     }
 
     @Override
+    public int getMinimumWidth() {
+        return minimumWidth;
+    }
+
+    @Override
+    public int getMinimumHeight() {
+        return minimumHeight;
+    }
+
+    @Override
     public int getWidth() {
         return width;
     }
@@ -84,6 +94,16 @@ public class BaseComponent implements Component {
     @Override
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    @Override
+    public void setMinimumHeight(int minimumHeight) {
+        this.minimumHeight = minimumHeight;
+    }
+
+    @Override
+    public void setMinimumWidth(int minimumWidth) {
+        this.minimumWidth = minimumWidth;
     }
 
     @Override

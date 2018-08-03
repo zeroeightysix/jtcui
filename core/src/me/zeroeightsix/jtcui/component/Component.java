@@ -15,10 +15,14 @@ public interface Component {
     int getY();
     int getWidth();
     int getHeight();
+    int getMinimumWidth();
+    int getMinimumHeight();
     void setX(int x);
+    void setY(int y);
     void setWidth(int width);
     void setHeight(int height);
-    void setY(int y);
+    void setMinimumWidth(int width);
+    void setMinimumHeight(int height);
 
     Component getParent();
     List<Component> getChildren();
