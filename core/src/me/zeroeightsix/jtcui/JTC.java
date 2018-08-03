@@ -7,8 +7,10 @@ import me.zeroeightsix.jtcui.exception.JTCMissingHandleException;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
-import me.zeroeightsix.jtcui.layout.layouts.FixedLayout;
+import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,16 +41,12 @@ public class JTC {
     }
 
     private void renderRecursive(Component component) {
-        render.translate(component.getX(), component.getY());
+        render.translate(component.getSpace().xProperty().get(), component.getSpace().yProperty().get());
         getComponentHandle(component).draw(component);
         if (component.getChildren() != null) {
-            boolean b = component instanceof Container;
-            int tx = ((Container) component).getFatLeft(), ty = ((Container) component).getFatTop();
-            if (b) render.translate(tx, ty);
             component.getChildren().forEach(this::renderRecursive);
-            if (b) render.translate(-tx, -ty);
         }
-        render.translate(-component.getX(), -component.getY());
+        render.translate(-component.getSpace().xProperty().get(), -component.getSpace().yProperty().get());
     }
 
     /**
@@ -87,8 +85,10 @@ public class JTC {
                     if (component.getClass().isAnnotationPresent(Install.class)) {
                         Class<? extends ComponentHandle> handleClass = component.getClass().getAnnotation(Install.class).value();
                         try {
-                            classComponentHandleHashMap.put(component.getClass(), handleClass.newInstance());
-                        } catch (Exception e) {}
+                            handle = handleClass.newInstance();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     } else {
                         handle = classComponentHandleHashMap.entrySet().stream()
                                 .filter(classComponentHandleEntry -> classComponentHandleEntry.getKey().isInstance(component))
@@ -130,15 +130,9 @@ public class JTC {
      */
     public Point getRealPosition(Component component) {
         int x = 0, y = 0;
-        boolean alpha = false;
         while (component.getParent() != null) {
-            x += component.getX();
-            y += component.getY();
-            if (alpha) {
-                x += ((Container) component).getFatLeft();
-                y += ((Container) component).getFatTop();
-            }
-            alpha = true;
+            x += component.getSpace().xProperty().get();
+            y += component.getSpace().yProperty().get();
             component = component.getParent();
         }
         return new Point(x, y);
@@ -158,7 +152,7 @@ public class JTC {
 
         public JTCRootComponent() {
             super(0, 0);
-            setLayout(new FixedLayout());
+            setLayout(new CenteredLayout());
             handle = new ComponentHandle() {
                 @Override
                 public void draw(Component component) {
@@ -178,7 +172,7 @@ public class JTC {
         }
 
         @Override
-        public Component explore(int x, int y) {
+        public Component explore(double x, double y) {
             return exploreSelf(x, y);
         }
 
@@ -188,6 +182,7 @@ public class JTC {
         }
     }
 
+    @Retention(RetentionPolicy.RUNTIME)
     public @interface Install {
         Class<? extends ComponentHandle> value();
     }

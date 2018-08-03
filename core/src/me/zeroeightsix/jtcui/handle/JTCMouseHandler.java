@@ -45,9 +45,11 @@ public class JTCMouseHandler implements MouseHandler {
     }
 
     protected Optional<Component> funnel(JTC theJTC, int x, int y) {
-        if (x < theJTC.getRootComponent().getX() || y < theJTC.getRootComponent().getY()) return Optional.empty();
-        Component c = theJTC.getRootComponent().explore(x - theJTC.getRootComponent().getX(), y - theJTC.getRootComponent().getY());
-        if (c.getMouseHandlers() != null) return Optional.of(c);
+        if (x < theJTC.getRootComponent().getSpace().xProperty().get()
+                || y < theJTC.getRootComponent().getSpace().yProperty().get())
+            return Optional.empty();
+        Component c = theJTC.getRootComponent().explore(x - theJTC.getRootComponent().getSpace().xProperty().get(), y - theJTC.getRootComponent().getSpace().yProperty().get());
+        if (c.getMouseHandlers() != null) return Optional.ofNullable(c);
         return Optional.empty();
     }
 }

@@ -1,9 +1,12 @@
 package me.zeroeightsix.jtcui.component;
 
+import me.zeroeightsix.jtcui.Fat;
+import me.zeroeightsix.jtcui.Space;
+
 /**
  * @author 086
  */
-abstract class ExplorableContainer extends SlimContainer {
+abstract class ExplorableContainer extends BaseContainer {
 
     public ExplorableContainer() {
     }
@@ -17,17 +20,24 @@ abstract class ExplorableContainer extends SlimContainer {
     }
 
     @Override
-    public Component explore(int x, int y) {
-        if (x <= getFatLeft() || y <= getFatTop() || x > getWidth()-getFatRight() || y > getHeight()-getFatBottom()) return this;
-        return this.exploreSelf(x - getFatLeft(), y - getFatTop());
+    public Component explore(double x, double y) {
+        Fat fat = getFat();
+        Space space = getSpace();
+        if (x <= fat.getLeft()
+                || y <= fat.getTop()
+                || x > space.widthProperty().get() - fat.getRight()
+                || y > space.heightProperty().get() - fat.getBottom())
+            return this;
+        return this.exploreSelf(x, y);
     }
 
-    protected final Component exploreSelf(int x, int y) {
+    protected final Component exploreSelf(double x, double y) {
         for (Component child : getChildren()) {
-            int xc = child.getX();
-            int yc = child.getY();
-            int wc = child.getWidth();
-            int hc = child.getHeight();
+            Space space = child.getSpace();
+            double xc = space.xProperty().get();
+            double yc = space.yProperty().get();
+            double wc = space.widthProperty().get();
+            double hc = space.heightProperty().get();
             if (x >= xc
                     && y >= yc
                     && x <= xc + wc

@@ -1,5 +1,7 @@
 package me.zeroeightsix.jtcui.component;
 
+import me.zeroeightsix.jtcui.Fat;
+
 import java.util.Collection;
 import java.util.List;
 
@@ -8,9 +10,6 @@ import java.util.List;
  */
 public interface Container extends Component {
 
-    int getFatTop();
-    int getFatLeft();
-    int getFatRight();
-    int getFatBottom();
+    Fat getFat();
 
 }

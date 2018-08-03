@@ -3,6 +3,7 @@ package me.zeroeightsix.jtcui.component;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by 086 on 23/04/2018.
@@ -12,11 +13,16 @@ import java.util.List;
 public class SimpleContainer extends ExplorableContainer {
 
     private List<Component> components = new ArrayList<Component>() {
+
+        private void update() {
+            Optional.ofNullable(getLayout()).ifPresent(layout -> layout.update(SimpleContainer.this));
+        }
+
         @Override
         public boolean add(Component component) {
             component.setParent(SimpleContainer.this);
             boolean ret = super.add(component);
-            getLayout().organise(SimpleContainer.this);
+            update();
             return ret;
         }
 
@@ -24,14 +30,14 @@ public class SimpleContainer extends ExplorableContainer {
         public void add(int i, Component component) {
             component.setParent(SimpleContainer.this);
             super.add(i, component);
-            getLayout().organise(SimpleContainer.this);
+            update();
         }
 
         @Override
         public boolean addAll(Collection<? extends Component> collection) {
             collection.forEach(o -> o.setParent(SimpleContainer.this));
             boolean ret = super.addAll(collection);
-            getLayout().organise(SimpleContainer.this);
+            update();
             return ret;
         }
 
@@ -39,7 +45,7 @@ public class SimpleContainer extends ExplorableContainer {
         public boolean addAll(int i, Collection<? extends Component> collection) {
             collection.forEach(o -> o.setParent(SimpleContainer.this));
             boolean ret = super.addAll(i, collection);
-            getLayout().organise(SimpleContainer.this);
+            update();
             return ret;
         }
     };

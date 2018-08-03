@@ -1,49 +1,27 @@
 package me.zeroeightsix.jtcui.component;
 
+import me.zeroeightsix.jtcui.Fat;
+
 /**
  * A component with a border, where its children aren't supposed to be. Something like a window.
  * @author 086
  */
 public class BorderedContainer extends SimpleContainer {
 
-    private final int top;
-    private final int left;
-    private final int right;
-    private final int bottom;
+    private final Fat fat;
 
-    public BorderedContainer(int top, int left, int right, int bottom) {
-        this.top = top;
-        this.left = left;
-        this.right = right;
-        this.bottom = bottom;
+    public BorderedContainer(Fat fat) {
+        this(0, 0, 0, 0, fat);
     }
 
-    public BorderedContainer(int x, int y, int width, int height, int left, int top, int right, int bottom) {
+    public BorderedContainer(int x, int y, int width, int height, Fat fat) {
         super(x, y, width, height);
-        this.top = top;
-        this.left = left;
-        this.right = right;
-        this.bottom = bottom;
+        this.fat = fat;
     }
 
     @Override
-    public int getFatTop() {
-        return top;
-    }
-
-    @Override
-    public int getFatRight() {
-        return right;
-    }
-
-    @Override
-    public int getFatLeft() {
-        return left;
-    }
-
-    @Override
-    public int getFatBottom() {
-        return bottom;
+    public Fat getFat() {
+        return fat;
     }
 
 }

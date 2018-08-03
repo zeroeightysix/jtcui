@@ -16,7 +16,7 @@ public interface RenderHandler {
      * @param bottom The y coordinate of the bottom right corner
      * @param right  The x coordinate of the bottom right corner
      */
-    void scissor(int top, int left, int bottom, int right);
+    void scissor(double top, double left, double bottom, double right);
 
     /**
      * Disable the scissor test
@@ -26,10 +26,10 @@ public interface RenderHandler {
     /**
      * Move the current translation
      *
-     * @param x Amount to add to the current translation on the x axis
-     * @param y Amount to add to the current translation on the y axis
+     * @param x Amount to withAdded to the current translation on the x axis
+     * @param y Amount to withAdded to the current translation on the y axis
      */
-    void translate(int x, int y);
+    void translate(double x, double y);
 
     /**
      * Reset the current translation to the origin point

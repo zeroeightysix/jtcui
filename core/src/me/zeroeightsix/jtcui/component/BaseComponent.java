@@ -1,5 +1,7 @@
 package me.zeroeightsix.jtcui.component;
 
+import me.zeroeightsix.jtcui.Requirements;
+import me.zeroeightsix.jtcui.Space;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.layout.layouts.Layout;
@@ -12,7 +14,9 @@ import java.util.List;
  */
 public class BaseComponent implements Component {
 
-    private int x, y, width, height, minimumWidth, minimumHeight;
+    private Space space;
+    private Requirements requirements;
+
     private Component parent;
     private Layout layout;
     private ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
@@ -22,14 +26,26 @@ public class BaseComponent implements Component {
     }
 
     public BaseComponent(int x, int y) {
-        setX(x);
-        setY(y);
+        this(x, y, 0, 0);
     }
 
     public BaseComponent(int x, int y, int width, int height) {
-        this(x, y);
-        setWidth(width);
-        setHeight(height);
+        this(x, y, width, height, 0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
+    }
+
+    public BaseComponent(int x, int y, int width, int height, int minWidth, int minHeight, int maxWidth, int maxHeight) {
+        space = new Space(this, x, y, width, height);
+        requirements = new Requirements(minWidth, minHeight, maxWidth, maxHeight);
+    }
+
+    @Override
+    public Space getSpace() {
+        return space;
+    }
+
+    @Override
+    public Requirements getRequirements() {
+        return requirements;
     }
 
     @Override
@@ -38,7 +54,7 @@ public class BaseComponent implements Component {
     }
 
     @Override
-    public Component explore(int x, int y) {
+    public Component explore(double x, double y) {
         return this;
     }
 
@@ -49,66 +65,6 @@ public class BaseComponent implements Component {
     @Override
     public List<Component> getChildren() {
         return null;
-    }
-
-    @Override
-    public int getX() {
-        return x;
-    }
-
-    @Override
-    public int getY() {
-        return y;
-    }
-
-    @Override
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    @Override
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    @Override
-    public int getHeight() {
-        return height;
-    }
-
-    @Override
-    public int getMinimumWidth() {
-        return minimumWidth;
-    }
-
-    @Override
-    public int getMinimumHeight() {
-        return minimumHeight;
-    }
-
-    @Override
-    public int getWidth() {
-        return width;
-    }
-
-    @Override
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    @Override
-    public void setMinimumHeight(int minimumHeight) {
-        this.minimumHeight = minimumHeight;
-    }
-
-    @Override
-    public void setMinimumWidth(int minimumWidth) {
-        this.minimumWidth = minimumWidth;
-    }
-
-    @Override
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     @Override

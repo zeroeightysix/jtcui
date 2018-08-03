@@ -22,6 +22,20 @@ public class SimpleComponent extends BaseComponent implements Toggleable, Labele
         super(x, y, width, height);
     }
 
+    public SimpleComponent(String text) {
+        this.text = text;
+    }
+
+    public SimpleComponent(int x, int y, String text) {
+        super(x, y);
+        setText(text);
+    }
+
+    public SimpleComponent(int x, int y, int width, int height, String text) {
+        super(x, y, width, height);
+        setText(text);
+    }
+
     @Override
     public boolean isEnabled() {
         return enabled;

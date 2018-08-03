@@ -8,25 +8,37 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.JTCBuilder;
+import me.zeroeightsix.jtcui.desktop.component.Button;
+import me.zeroeightsix.jtcui.desktop.component.VBox;
 
 public class Launcher extends ApplicationAdapter {
 
-	private Viewport viewport;
-	private OrthographicCamera camera;
+	public static OrthographicCamera camera;
 
 	private JTC jtc;
 
 	@Override
 	public void create () {
 	    camera = new OrthographicCamera();
-	    camera.setToOrtho(true);
-	    viewport = new ScreenViewport(camera);
+	    camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 	    jtc = JTCBuilder.builder(new GuiRenderer()).build();
 	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
-	}
+
+        VBox vBox = new VBox(new Fat(5, 5, 5, 5));
+        vBox.getSpace().widthProperty().addListener((observableValue, number, t1) -> System.out.println(t1));
+
+        Button button = new Button("Button");
+        button.getSpace().xProperty().addListener((observableValue, number, t1) -> System.out.println("button: " + t1));
+        vBox.getChildren().add(button);
+
+        jtc.getRootComponent().getChildren().add(vBox);
+    }
 
 	@Override
 	public void render () {
@@ -34,10 +46,6 @@ public class Launcher extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		jtc.renderRecursive();
-
-//		batch.begin();
-//		batch.draw(img, 0, 0);
-//		batch.end();
 	}
 	
 	@Override
@@ -49,7 +57,7 @@ public class Launcher extends ApplicationAdapter {
 	@Override
 	public void resize(int width, int height) {
 		super.resize(width, height);
-        viewport.update(width, height);
-        camera.update();
+		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		camera.update();
 	}
 }

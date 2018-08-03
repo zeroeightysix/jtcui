@@ -10,11 +10,11 @@ import org.lwjgl.opengl.GL11;
  */
 public class GuiRenderer implements RenderHandler {
 
-    private int translatedX = 0, translatedY = 0;
+    private double translatedX = 0, translatedY = 0;
 
     @Override
-    public void scissor(int top, int left, int bottom, int right) {
-        Gdx.gl.glScissor(left, top, right-left, bottom-top);
+    public void scissor(double top, double left, double bottom, double right) {
+        Gdx.gl.glScissor((int) left, (int) top, (int) (right-left), (int) (bottom-top));
         Gdx.gl.glEnable(GL20.GL_SCISSOR_TEST);
     }
 
@@ -24,7 +24,7 @@ public class GuiRenderer implements RenderHandler {
     }
 
     @Override
-    public void translate(int x, int y) {
+    public void translate(double x, double y) {
         GL11.glTranslated(x, y, 0);
         translatedX += x;
         translatedY += y;
