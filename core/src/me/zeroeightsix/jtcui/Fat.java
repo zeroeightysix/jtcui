@@ -35,4 +35,9 @@ public class Fat {
         return top;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Fat[left=%d, right=%d, top=%d, bottom=%d]", getLeft(), getRight(), getTop(), getBottom());
+    }
+
 }

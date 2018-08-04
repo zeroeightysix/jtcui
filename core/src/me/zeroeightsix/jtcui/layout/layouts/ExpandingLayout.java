@@ -9,8 +9,7 @@ import java.util.Optional;
  * @author 086
  */
 public abstract class ExpandingLayout extends AbstractLayout {
-    @Override
-    public void size(Component component) {
+    public void expand(Component component) {
         Optional.ofNullable(component.getParent()).ifPresent(parent -> {
             Space space = getSlimSpace(parent);
             component.getSpace().xProperty().set(space.xProperty().get());
@@ -18,5 +17,11 @@ public abstract class ExpandingLayout extends AbstractLayout {
             component.getSpace().widthProperty().set(space.widthProperty().get());
             component.getSpace().heightProperty().set(space.heightProperty().get());
         });
+    }
+
+    @Override
+    public void update(Component component) {
+        expand(component);
+        organise(component);
     }
 }

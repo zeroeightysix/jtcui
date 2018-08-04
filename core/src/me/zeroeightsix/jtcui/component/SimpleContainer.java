@@ -1,5 +1,7 @@
 package me.zeroeightsix.jtcui.component;
 
+import me.zeroeightsix.jtcui.JTC;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -15,7 +17,7 @@ public class SimpleContainer extends ExplorableContainer {
     private List<Component> components = new ArrayList<Component>() {
 
         private void update() {
-            Optional.ofNullable(getLayout()).ifPresent(layout -> layout.update(SimpleContainer.this));
+            JTC.update(JTC.getRootParent(SimpleContainer.this));
         }
 
         @Override

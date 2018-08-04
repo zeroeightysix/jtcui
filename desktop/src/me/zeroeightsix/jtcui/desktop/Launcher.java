@@ -31,12 +31,8 @@ public class Launcher extends ApplicationAdapter {
 	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
 
         VBox vBox = new VBox(new Fat(5, 5, 5, 5));
-        vBox.getSpace().widthProperty().addListener((observableValue, number, t1) -> System.out.println(t1));
-
-        Button button = new Button("Button");
-        button.getSpace().xProperty().addListener((observableValue, number, t1) -> System.out.println("button: " + t1));
-        vBox.getChildren().add(button);
-
+		Button button = new Button("Button");
+		vBox.getChildren().add(button);
         jtc.getRootComponent().getChildren().add(vBox);
     }
 

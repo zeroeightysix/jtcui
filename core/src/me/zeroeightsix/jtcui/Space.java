@@ -13,10 +13,10 @@ public class Space {
 
     final Component parent;
 
-    private SimpleDoubleProperty x = new SimpleDoubleProperty(this, "x", 0);
-    private SimpleDoubleProperty y = new SimpleDoubleProperty(this, "y", 0);
-    private SimpleDoubleProperty width = new SimpleDoubleProperty(this, "width", 0);
-    private SimpleDoubleProperty height = new SimpleDoubleProperty(this, "height", 0);
+    private SimpleDoubleProperty x = new SimpleUpdatingDoubleProperty(this, "x", 0);
+    private SimpleDoubleProperty y = new SimpleUpdatingDoubleProperty(this, "y", 0);
+    private SimpleDoubleProperty width = new SimpleUpdatingDoubleProperty(this, "width", 0);
+    private SimpleDoubleProperty height = new SimpleUpdatingDoubleProperty(this, "height", 0);
 
     public Space(Component parent, double x, double y, double width, double height) {
         this.parent = parent;
@@ -60,10 +60,14 @@ public class Space {
     }
 
     private class SimpleUpdatingDoubleProperty extends SimpleDoubleProperty {
+        public SimpleUpdatingDoubleProperty(Object bean, String name, double initialValue) {
+            super(bean, name, initialValue);
+        }
+
         @Override
         protected void invalidated() {
             super.invalidated();
-            Optional.ofNullable(parent.getParent()).ifPresent(parent2 -> Optional.of(parent2.getLayout()).ifPresent(layout -> layout.update(parent2)));
+            JTC.update(JTC.getRootParent(parent));
         }
     }
 

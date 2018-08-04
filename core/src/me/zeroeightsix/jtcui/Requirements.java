@@ -49,4 +49,9 @@ public class Requirements {
         this.maximumWidth = maximumWidth;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Requirements[minW=%d, minH=%d, maxW=%d, maxH=%d]", getMinimumWidth(), getMinimumHeight(), getMaximumWidth(), getMaximumHeight());
+    }
+
 }

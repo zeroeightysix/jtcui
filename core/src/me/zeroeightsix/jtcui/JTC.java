@@ -8,17 +8,21 @@ import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
+import me.zeroeightsix.jtcui.layout.layouts.Layout;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Vector;
 
 /**
  * Created by 086 on 23/04/2018.
  */
 public class JTC {
 
+    private static boolean updating = false;
     public MouseHandler mouse;
     public RenderHandler render;
     private final Container rootComponent = new JTCRootComponent();
@@ -110,7 +114,7 @@ public class JTC {
      * @param component
      * @return The x coordinate of the position found
      */
-    public int getRealX(Component component) {
+    public static int getRealX(Component component) {
         return getRealPosition(component).getX();
     }
 
@@ -119,7 +123,7 @@ public class JTC {
      * @param component
      * @return The y coordinate of the position found
      */
-    public int getRealY(Component component) {
+    public static int getRealY(Component component) {
         return getRealPosition(component).getY();
     }
 
@@ -128,7 +132,7 @@ public class JTC {
      * @param component
      * @return The position found
      */
-    public Point getRealPosition(Component component) {
+    public static Point getRealPosition(Component component) {
         int x = 0, y = 0;
         while (component.getParent() != null) {
             x += component.getSpace().xProperty().get();
@@ -136,6 +140,29 @@ public class JTC {
             component = component.getParent();
         }
         return new Point(x, y);
+    }
+
+    public static Component getRootParent(Component component) {
+        while (component.getParent() != null) component = component.getParent();
+        return component;
+    }
+
+    public void update() {
+        update(getRootComponent());
+    }
+
+    public static void update(Component component) {
+        if (updating) {
+            return;
+        }
+        updating = true;
+        deepUpdate(component);
+        updating = false;
+    }
+
+    private static void deepUpdate(Component component) {
+        Optional.ofNullable(component.getLayout()).ifPresent(layout -> layout.update(component));
+        Optional.ofNullable(component.getChildren()).ifPresent(components -> components.forEach(JTC::deepUpdate));
     }
 
     /**

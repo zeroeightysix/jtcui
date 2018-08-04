@@ -74,7 +74,7 @@ public class Button extends SimpleComponent {
             renderer.vertex(width, 8, 0);
             renderer.end();
 
-            Fonts.draw(Fonts.robotoCondensedBold, component.getText(), 10, 10);
+            Fonts.draw(Fonts.robotoCondensedBold, component.getText(), (int) component.getSpace().xProperty().get(), (int) component.getSpace().yProperty().get());
         }
 
         @Override
