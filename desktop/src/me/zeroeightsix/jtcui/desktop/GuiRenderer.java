@@ -10,8 +10,6 @@ import org.lwjgl.opengl.GL11;
  */
 public class GuiRenderer implements RenderHandler {
 
-    private float translatedX = 0, translatedY = 0;
-
     @Override
     public void scissor(double top, double left, double bottom, double right) {
         Gdx.gl.glScissor((int) left, (int) top, (int) (right-left), (int) (bottom-top));
@@ -28,15 +26,12 @@ public class GuiRenderer implements RenderHandler {
         float xx = (float) x;
         float yy = (float) y;
         Launcher.camera.translate(xx, yy);
-        translatedX += xx;
-        translatedY += yy;
     }
 
     @Override
     public void resetTranslation() {
-        GL11.glTranslated(-translatedX, -translatedY, 0);
-        translatedX = 0;
-        translatedY = 0;
+        Launcher.camera.position.x = 0;
+        Launcher.camera.position.y = 0;
     }
 
 }

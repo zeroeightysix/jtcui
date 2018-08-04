@@ -13,11 +13,11 @@ public class CenteredLayout extends ExpandingLayout {
     public void organise(Component component) {
         Optional.ofNullable(component.getChildren()).ifPresent(components -> {
             Space space = getSlimSpace(component);
-            double centerX = space.widthProperty().get() / 2;
-            double centerY = space.heightProperty().get() / 2;
+            double centerX = space.xProperty().get() + space.widthProperty().get() / 2;
+            double centerY = space.yProperty().get() + space.heightProperty().get() / 2;
             components.forEach(child -> {
-                child.getSpace().xProperty().set(space.xProperty().get() + centerX - child.getSpace().widthProperty().get() / 2);
-                child.getSpace().yProperty().set(space.yProperty().get() + centerY - child.getSpace().heightProperty().get() / 2);
+                child.getSpace().xProperty().set(centerX - (child.getSpace().widthProperty().get() / 2));
+                child.getSpace().yProperty().set(centerY - (child.getSpace().heightProperty().get() / 2));
             });
         });
     }

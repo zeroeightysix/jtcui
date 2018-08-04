@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.component.SimpleComponent;
 import me.zeroeightsix.jtcui.desktop.Fonts;
+import me.zeroeightsix.jtcui.desktop.GuiRenderer;
 import me.zeroeightsix.jtcui.desktop.Launcher;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
@@ -23,7 +24,9 @@ public class Button extends SimpleComponent {
 
     public Button(String text) {
         this(0, 0, text);
-        getRequirements().setMinimumWidth(36);
+//        getRequirements().setMinimumHeight(36);
+        getRequirements().setMinimumHeight(20);
+        updateSizes();
     }
 
     public Button(int x, int y, String text) {
@@ -36,7 +39,10 @@ public class Button extends SimpleComponent {
 
     public void updateSizes() {
         layout.setText(Fonts.robotoCondensedBold, getText());
-        getRequirements().setMinimumWidth((int) layout.width + (getIcon() == null ? 32 : 36));
+        getRequirements().setMinimumWidth(300);
+//        getRequirements().setMinimumWidth((int) layout.width + (getIcon() == null ? 32 : 36));
+        if (getSpace().widthProperty().get() < getRequirements().getMinimumWidth()) getSpace().widthProperty().set(getRequirements().getMinimumWidth());
+        if (getSpace().heightProperty().get() < getRequirements().getMinimumHeight()) getSpace().heightProperty().set(getRequirements().getMinimumHeight());
     }
 
     public Texture getIcon() {
@@ -51,8 +57,6 @@ public class Button extends SimpleComponent {
     public void setText(String text) {
         super.setText(text);
         updateSizes();
-        if (getSpace().widthProperty().get() < getRequirements().getMinimumWidth()) getSpace().widthProperty().set(getRequirements().getMinimumWidth());
-        if (getSpace().heightProperty().get() < getRequirements().getMinimumHeight()) getSpace().heightProperty().set(getRequirements().getMinimumHeight());
     }
 
     public static class ButtonHandle implements ComponentHandle<Button> {
@@ -61,20 +65,22 @@ public class Button extends SimpleComponent {
 
         @Override
         public void draw(Button component) {
-//            renderer.setProjectionMatrix(Launcher.camera.combined);
+            float tX = Launcher.camera.position.x;
+            float tY = Launcher.camera.position.y;
             int width = (int) component.getSpace().widthProperty().get();
             int height = (int) component.getSpace().heightProperty().get();
-//            renderer.setColor(.4f, .121f, 1, 1);
-            renderer.begin(Launcher.camera.combined, GL20.GL_TRIANGLE_FAN);
+            renderer.begin(Launcher.camera.combined, GL11.GL_QUADS);
             renderer.color(1, 1, 1, 1);
-            renderer.vertex(8, 0, 0);
+            renderer.vertex(tX, tY, 0);
             renderer.color(1, 1, 1, 1);
-            renderer.vertex(width - 8, 0, 0);
+            renderer.vertex(tX+width, tY, 0);
             renderer.color(1, 1, 1, 1);
-            renderer.vertex(width, 8, 0);
+            renderer.vertex(tX+width, tY+height, 0);
+            renderer.color(1, 1, 1, 1);
+            renderer.vertex(tX, tY+height, 0);
             renderer.end();
 
-            Fonts.draw(Fonts.robotoCondensedBold, component.getText(), (int) component.getSpace().xProperty().get(), (int) component.getSpace().yProperty().get());
+            Fonts.draw(Fonts.robotoCondensedBold, component.getText(), 0, 0);
         }
 
         @Override

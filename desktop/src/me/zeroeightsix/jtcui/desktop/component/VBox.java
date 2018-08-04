@@ -36,11 +36,14 @@ public class VBox extends BorderedContainer {
         public void draw(VBox component) {
             int width = (int) component.getSpace().widthProperty().get();
             int height = (int) component.getSpace().heightProperty().get();
-            renderer.color(.4f, .121f, 1, 1);
             renderer.begin(Launcher.camera.combined, GL11.GL_QUADS);
+            renderer.color(.4f, .121f, 1, 1);
             renderer.vertex(0, 0, 0);
+            renderer.color(.4f, .121f, 1, 1);
             renderer.vertex(width, 0, 0);
+            renderer.color(.4f, .121f, 1, 1);
             renderer.vertex(width, height, 0);
+            renderer.color(.4f, .121f, 1, 1);
             renderer.vertex(0, height, 0);
             renderer.end();
         }

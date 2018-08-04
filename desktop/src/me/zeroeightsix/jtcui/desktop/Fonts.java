@@ -16,7 +16,8 @@ public class Fonts {
     public static void draw(BitmapFont font, String text, int x, int y) {
         batch.setProjectionMatrix(Launcher.camera.combined);
         batch.begin();
-        font.draw(batch, text, x, y);
+        font.setColor(0,0,0,1);
+        font.draw(batch, text, x + Launcher.camera.position.x, y + Launcher.camera.position.y);
         batch.end();
     }
 

@@ -15,6 +15,7 @@ import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.JTCBuilder;
 import me.zeroeightsix.jtcui.desktop.component.Button;
 import me.zeroeightsix.jtcui.desktop.component.VBox;
+import me.zeroeightsix.jtcui.handle.JTCMouseHandler;
 
 public class Launcher extends ApplicationAdapter {
 
@@ -22,16 +23,30 @@ public class Launcher extends ApplicationAdapter {
 
 	private JTC jtc;
 
+	private VBox vBox;
+	private Button button;
+
 	@Override
 	public void create () {
 	    camera = new OrthographicCamera();
 	    camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
 	    jtc = JTCBuilder.builder(new GuiRenderer()).build();
+
+	    // For testing purposes
+        jtc.mouse = new JTCMouseHandler(jtc) {
+            @Override
+            public void onMouse(MouseAction action, int x, int y, int button) {
+                super.onMouse(action, x, y, button);
+                if (action == MouseAction.DOWN)
+                    jtc.update();
+            }
+        };
+
 	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
 
-        VBox vBox = new VBox(new Fat(5, 5, 5, 5));
-		Button button = new Button("Button");
+        vBox = new VBox(new Fat(5, 5, 5, 5));
+		button = new Button("Button");
 		vBox.getChildren().add(button);
         jtc.getRootComponent().getChildren().add(vBox);
     }
@@ -55,5 +70,8 @@ public class Launcher extends ApplicationAdapter {
 		super.resize(width, height);
 		camera.setToOrtho(true, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		camera.update();
+
+		jtc.getRootComponent().getSpace().widthProperty().set(width);
+		jtc.getRootComponent().getSpace().heightProperty().set(height);
 	}
 }
