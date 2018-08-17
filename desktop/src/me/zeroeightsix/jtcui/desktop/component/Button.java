@@ -1,13 +1,11 @@
 package me.zeroeightsix.jtcui.desktop.component;
 
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.component.SimpleComponent;
 import me.zeroeightsix.jtcui.desktop.Fonts;
-import me.zeroeightsix.jtcui.desktop.GuiRenderer;
 import me.zeroeightsix.jtcui.desktop.Launcher;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
@@ -19,7 +17,7 @@ import org.lwjgl.opengl.GL11;
 @JTC.Install(Button.ButtonHandle.class)
 public class Button extends SimpleComponent {
 
-    private static GlyphLayout layout = new GlyphLayout();
+    private static GlyphLayout glyphLayout = new GlyphLayout();
     Texture icon = null;
 
     public Button(String text) {
@@ -38,9 +36,9 @@ public class Button extends SimpleComponent {
     }
 
     public void updateSizes() {
-        layout.setText(Fonts.robotoCondensedBold, getText());
-        getRequirements().setMinimumWidth(300);
-//        getRequirements().setMinimumWidth((int) layout.width + (getIcon() == null ? 32 : 36));
+        glyphLayout.setText(Fonts.robotoCondensedBold, getText());
+        getRequirements().setMinimumWidth(20);
+//        getRequirements().setMinimumWidth((int) glyphLayout.width + (getIcon() == null ? 32 : 36));
         if (getSpace().widthProperty().get() < getRequirements().getMinimumWidth()) getSpace().widthProperty().set(getRequirements().getMinimumWidth());
         if (getSpace().heightProperty().get() < getRequirements().getMinimumHeight()) getSpace().heightProperty().set(getRequirements().getMinimumHeight());
     }

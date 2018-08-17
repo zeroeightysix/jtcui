@@ -9,6 +9,7 @@ import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.Layout;
+import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -147,6 +148,9 @@ public class JTC {
         return component;
     }
 
+    /**
+     * Updates the root component
+     */
     public void update() {
         update(getRootComponent());
     }
@@ -179,7 +183,7 @@ public class JTC {
 
         public JTCRootComponent() {
             super(0, 0);
-            setLayout(new CenteredLayout());
+            setLayout(new CenteredLayout(SelfSizingLayout.Type.EXPANDING));
             handle = new ComponentHandle() {
                 @Override
                 public void draw(Component component) {

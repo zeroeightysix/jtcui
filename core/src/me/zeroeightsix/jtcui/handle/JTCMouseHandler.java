@@ -52,4 +52,9 @@ public class JTCMouseHandler implements MouseHandler {
         if (c.getMouseHandlers() != null) return Optional.ofNullable(c);
         return Optional.empty();
     }
+
+    protected JTC getJTC() {
+        return theJTC;
+    }
+
 }

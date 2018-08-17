@@ -34,18 +34,11 @@ public class Launcher extends ApplicationAdapter {
 	    jtc = JTCBuilder.builder(new GuiRenderer()).build();
 
 	    // For testing purposes
-        jtc.mouse = new JTCMouseHandler(jtc) {
-            @Override
-            public void onMouse(MouseAction action, int x, int y, int button) {
-                super.onMouse(action, x, y, button);
-                if (action == MouseAction.DOWN)
-                    jtc.update();
-            }
-        };
+        jtc.mouse = new DebugMouseHandler(jtc);
 
 	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
 
-        vBox = new VBox(new Fat(5, 5, 5, 5));
+        vBox = new VBox(new Fat(20, 5, 20, 5));
 		button = new Button("Button");
 		vBox.getChildren().add(button);
         jtc.getRootComponent().getChildren().add(vBox);

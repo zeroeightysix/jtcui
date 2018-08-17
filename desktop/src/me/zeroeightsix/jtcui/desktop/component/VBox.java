@@ -9,6 +9,7 @@ import me.zeroeightsix.jtcui.desktop.Launcher;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
+import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -23,7 +24,7 @@ public class VBox extends BorderedContainer {
 
     public VBox(Fat fat) {
         super(fat);
-        setLayout(new CenteredLayout());
+        setLayout(new CenteredLayout(SelfSizingLayout.Type.PACKING));
         getSpace().widthProperty().set(100);
         getSpace().heightProperty().set(100);
     }
@@ -34,17 +35,19 @@ public class VBox extends BorderedContainer {
 
         @Override
         public void draw(VBox component) {
+            float tX = Launcher.camera.position.x;
+            float tY = Launcher.camera.position.y;
             int width = (int) component.getSpace().widthProperty().get();
             int height = (int) component.getSpace().heightProperty().get();
             renderer.begin(Launcher.camera.combined, GL11.GL_QUADS);
             renderer.color(.4f, .121f, 1, 1);
-            renderer.vertex(0, 0, 0);
+            renderer.vertex(tX, tY, 0);
             renderer.color(.4f, .121f, 1, 1);
-            renderer.vertex(width, 0, 0);
+            renderer.vertex(tX+width, tY, 0);
             renderer.color(.4f, .121f, 1, 1);
-            renderer.vertex(width, height, 0);
+            renderer.vertex(tX+width, tY+height, 0);
             renderer.color(.4f, .121f, 1, 1);
-            renderer.vertex(0, height, 0);
+            renderer.vertex(tX, tY+height, 0);
             renderer.end();
         }
 
