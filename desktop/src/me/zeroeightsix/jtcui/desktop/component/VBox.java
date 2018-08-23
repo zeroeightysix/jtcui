@@ -10,6 +10,7 @@ import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
+import me.zeroeightsix.jtcui.layout.layouts.VerticalLayout;
 import org.lwjgl.opengl.GL11;
 
 /**
@@ -24,7 +25,7 @@ public class VBox extends BorderedContainer {
 
     public VBox(Fat fat) {
         super(fat);
-        setLayout(new CenteredLayout(SelfSizingLayout.Type.PACKING));
+        setLayout(new VerticalLayout(SelfSizingLayout.Type.PACKING));
         getSpace().widthProperty().set(100);
         getSpace().heightProperty().set(100);
     }

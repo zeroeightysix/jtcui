@@ -37,7 +37,7 @@ public class Button extends SimpleComponent {
 
     public void updateSizes() {
         glyphLayout.setText(Fonts.robotoCondensedBold, getText());
-        getRequirements().setMinimumWidth(20);
+        getRequirements().setMinimumWidth(100);
 //        getRequirements().setMinimumWidth((int) glyphLayout.width + (getIcon() == null ? 32 : 36));
         if (getSpace().widthProperty().get() < getRequirements().getMinimumWidth()) getSpace().widthProperty().set(getRequirements().getMinimumWidth());
         if (getSpace().heightProperty().get() < getRequirements().getMinimumHeight()) getSpace().heightProperty().set(getRequirements().getMinimumHeight());

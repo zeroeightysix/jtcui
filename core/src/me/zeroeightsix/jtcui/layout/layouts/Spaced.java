@@ -5,7 +5,7 @@ package me.zeroeightsix.jtcui.layout.layouts;
  */
 public interface Spaced {
 
-    int getSpacing();
-    void setSpacing(int spacing);
+    double getSpacing();
+    void setSpacing(double spacing);
 
 }
