@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 /**
  * @author 086
  */
-public interface Actionable<T extends Component> {
+interface Actionable<T extends Component> {
 
     void setOnAction(Consumer<T> consumer);
 

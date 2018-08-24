@@ -1,6 +1,5 @@
 package me.zeroeightsix.jtcui.layout.layouts;
 
-import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.layout.Alignment;
 
 /**
@@ -10,11 +9,11 @@ public abstract class AlignedLayout extends SelfSizingLayout implements Aligned 
 
     private Alignment alignment;
 
-    public AlignedLayout(Type type) {
+    AlignedLayout(Type type) {
         this(type, Alignment.TOP_LEFT);
     }
 
-    public AlignedLayout(Type type, Alignment alignment) {
+    private AlignedLayout(Type type, Alignment alignment) {
         super(type);
         this.alignment = alignment;
     }

@@ -7,13 +7,14 @@ import me.zeroeightsix.jtcui.Fat;
  */
 abstract class BaseContainer extends SimpleComponent implements Container {
 
-    public BaseContainer() {}
+    BaseContainer() {
+    }
 
-    public BaseContainer(int x, int y) {
+    BaseContainer(int x, int y) {
         super(x, y);
     }
 
-    public BaseContainer(int x, int y, int width, int height) {
+    BaseContainer(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 

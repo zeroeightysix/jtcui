@@ -7,9 +7,9 @@ public class Grow {
 
     public static final Grow NO_GROW = new Grow(-1);
 
-    float modifier;
+    private float modifier;
 
-    public Grow(float modifier) {
+    private Grow(float modifier) {
         this.modifier = modifier;
     }
 

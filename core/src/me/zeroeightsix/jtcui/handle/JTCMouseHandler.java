@@ -18,7 +18,7 @@ import java.util.Optional;
  */
 public class JTCMouseHandler implements MouseHandler {
 
-    JTC theJTC;
+    private final JTC theJTC;
 
     public JTCMouseHandler(JTC theJTC) {
         this.theJTC = theJTC;
@@ -27,8 +27,8 @@ public class JTCMouseHandler implements MouseHandler {
     @Override
     public void onMouse(MouseAction action, int x, int y, int button) {
         funnel(theJTC, x, y).ifPresent(c -> {
-            Point position = theJTC.getRealPosition(c);
-            int nx = x-position.getX(), ny = y-position.getY();
+            Point position = JTC.getRealPosition(c);
+            int nx = x - position.getX(), ny = y - position.getY();
             theJTC.getComponentHandle(c).onMouse(c, action, nx, ny, button);
             c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onMouse(action, nx, ny, button));
         });
@@ -37,14 +37,14 @@ public class JTCMouseHandler implements MouseHandler {
     @Override
     public void onScroll(int scrolled, int x, int y) {
         funnel(theJTC, x, y).ifPresent(c -> {
-            Point position = theJTC.getRealPosition(c);
-            int nx = x-position.getX(), ny = y-position.getY();
+            Point position = JTC.getRealPosition(c);
+            int nx = x - position.getX(), ny = y - position.getY();
             theJTC.getComponentHandle(c).onScroll(c, scrolled, nx, ny);
             c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onScroll(scrolled, nx, ny));
         });
     }
 
-    protected Optional<Component> funnel(JTC theJTC, int x, int y) {
+    private Optional<Component> funnel(JTC theJTC, int x, int y) {
         if (x < theJTC.getRootComponent().getSpace().xProperty().get()
                 || y < theJTC.getRootComponent().getSpace().yProperty().get())
             return Optional.empty();

@@ -14,26 +14,26 @@ import java.util.List;
  */
 public class BaseComponent implements Component {
 
-    private Space space;
-    private Requirements requirements;
+    private final Space space;
+    private final Requirements requirements;
 
     private Component parent;
     private Layout layout;
-    private ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
+    private final ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
 
-    public BaseComponent() {
-        this(0,0);
+    BaseComponent() {
+        this(0, 0);
     }
 
-    public BaseComponent(int x, int y) {
+    BaseComponent(int x, int y) {
         this(x, y, 0, 0);
     }
 
-    public BaseComponent(int x, int y, int width, int height) {
+    BaseComponent(int x, int y, int width, int height) {
         this(x, y, width, height, 0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
 
-    public BaseComponent(int x, int y, int width, int height, int minWidth, int minHeight, int maxWidth, int maxHeight) {
+    private BaseComponent(int x, int y, int width, int height, int minWidth, int minHeight, int maxWidth, int maxHeight) {
         space = new Space(this, x, y, width, height);
         requirements = new Requirements(minWidth, minHeight, maxWidth, maxHeight);
     }
@@ -53,13 +53,13 @@ public class BaseComponent implements Component {
         return parent;
     }
 
+    public void setParent(Component parent) {
+        this.parent = parent;
+    }
+
     @Override
     public Component explore(double x, double y) {
         return this;
-    }
-
-    public void setParent(Component parent) {
-        this.parent = parent;
     }
 
     @Override

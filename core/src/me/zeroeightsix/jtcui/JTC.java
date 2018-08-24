@@ -8,7 +8,6 @@ import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
-import me.zeroeightsix.jtcui.layout.layouts.Layout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
 import java.lang.annotation.Retention;
@@ -16,7 +15,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Vector;
 
 /**
  * Created by 086 on 23/04/2018.
@@ -24,13 +22,67 @@ import java.util.Vector;
 public class JTC {
 
     private static boolean updating = false;
-    public MouseHandler mouse;
-    public RenderHandler render;
     private final Container rootComponent = new JTCRootComponent();
-
     private final HashMap<Component, ComponentHandle> handleCache = new HashMap<>();
     private final HashMap<Class<? extends Component>, ComponentHandle> classComponentHandleHashMap = new HashMap<>();
     private final HashMap<Component, ComponentHandle> componentHandleHashMap = new HashMap<>();
+    public MouseHandler mouse;
+    private RenderHandler render;
+
+    /**
+     * Gets the x-position of this component relative to its highest parent
+     *
+     * @param component
+     * @return The x coordinate of the position found
+     */
+    public static int getRealX(Component component) {
+        return getRealPosition(component).getX();
+    }
+
+    /**
+     * Gets the y-position of this component relative to its highest parent
+     *
+     * @param component
+     * @return The y coordinate of the position found
+     */
+    public static int getRealY(Component component) {
+        return getRealPosition(component).getY();
+    }
+
+    /**
+     * Gets the position of this component relative to its highest parent
+     *
+     * @param component
+     * @return The position found
+     */
+    public static Point getRealPosition(Component component) {
+        int x = 0, y = 0;
+        while (component.getParent() != null) {
+            x += component.getSpace().xProperty().get();
+            y += component.getSpace().yProperty().get();
+            component = component.getParent();
+        }
+        return new Point(x, y);
+    }
+
+    public static Component getRootParent(Component component) {
+        while (component.getParent() != null) component = component.getParent();
+        return component;
+    }
+
+    public static void update(Component component) {
+        if (updating) {
+            return;
+        }
+        updating = true;
+        deepUpdate(component);
+        updating = false;
+    }
+
+    private static void deepUpdate(Component component) {
+        Optional.ofNullable(component.getLayout()).ifPresent(layout -> layout.update(component));
+        Optional.ofNullable(component.getChildren()).ifPresent(components -> components.forEach(JTC::deepUpdate));
+    }
 
     void setHandlers(RenderHandler render, MouseHandler mouse) {
         this.render = render;
@@ -111,62 +163,10 @@ public class JTC {
     }
 
     /**
-     * Gets the x-position of this component relative to its highest parent
-     * @param component
-     * @return The x coordinate of the position found
-     */
-    public static int getRealX(Component component) {
-        return getRealPosition(component).getX();
-    }
-
-    /**
-     * Gets the y-position of this component relative to its highest parent
-     * @param component
-     * @return The y coordinate of the position found
-     */
-    public static int getRealY(Component component) {
-        return getRealPosition(component).getY();
-    }
-
-    /**
-     * Gets the position of this component relative to its highest parent
-     * @param component
-     * @return The position found
-     */
-    public static Point getRealPosition(Component component) {
-        int x = 0, y = 0;
-        while (component.getParent() != null) {
-            x += component.getSpace().xProperty().get();
-            y += component.getSpace().yProperty().get();
-            component = component.getParent();
-        }
-        return new Point(x, y);
-    }
-
-    public static Component getRootParent(Component component) {
-        while (component.getParent() != null) component = component.getParent();
-        return component;
-    }
-
-    /**
      * Updates the root component
      */
     public void update() {
         update(getRootComponent());
-    }
-
-    public static void update(Component component) {
-        if (updating) {
-            return;
-        }
-        updating = true;
-        deepUpdate(component);
-        updating = false;
-    }
-
-    private static void deepUpdate(Component component) {
-        Optional.ofNullable(component.getLayout()).ifPresent(layout -> layout.update(component));
-        Optional.ofNullable(component.getChildren()).ifPresent(components -> components.forEach(JTC::deepUpdate));
     }
 
     /**
@@ -178,10 +178,15 @@ public class JTC {
         return rootComponent;
     }
 
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Install {
+        Class<? extends ComponentHandle> value();
+    }
+
     private class JTCRootComponent extends SimpleContainer {
         private final ComponentHandle handle;
 
-        public JTCRootComponent() {
+        JTCRootComponent() {
             super(0, 0);
             setLayout(new CenteredLayout(SelfSizingLayout.Type.EXPANDING));
             handle = new ComponentHandle() {
@@ -211,11 +216,6 @@ public class JTC {
         public ComponentHandle getHandle() {
             return handle;
         }
-    }
-
-    @Retention(RetentionPolicy.RUNTIME)
-    public @interface Install {
-        Class<? extends ComponentHandle> value();
     }
 
 }

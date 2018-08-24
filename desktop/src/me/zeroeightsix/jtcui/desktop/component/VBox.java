@@ -1,6 +1,5 @@
 package me.zeroeightsix.jtcui.desktop.component;
 
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ImmediateModeRenderer20;
 import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
@@ -8,7 +7,6 @@ import me.zeroeightsix.jtcui.component.BorderedContainer;
 import me.zeroeightsix.jtcui.desktop.Launcher;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
-import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 import me.zeroeightsix.jtcui.layout.layouts.VerticalLayout;
 import org.lwjgl.opengl.GL11;
@@ -44,11 +42,11 @@ public class VBox extends BorderedContainer {
             renderer.color(.4f, .121f, 1, 1);
             renderer.vertex(tX, tY, 0);
             renderer.color(.4f, .121f, 1, 1);
-            renderer.vertex(tX+width, tY, 0);
+            renderer.vertex(tX + width, tY, 0);
             renderer.color(.4f, .121f, 1, 1);
-            renderer.vertex(tX+width, tY+height, 0);
+            renderer.vertex(tX + width, tY + height, 0);
             renderer.color(.4f, .121f, 1, 1);
-            renderer.vertex(tX, tY+height, 0);
+            renderer.vertex(tX, tY + height, 0);
             renderer.end();
         }
 

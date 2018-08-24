@@ -1,7 +1,5 @@
 package me.zeroeightsix.jtcui.layout.layouts;
 
-import me.zeroeightsix.jtcui.layout.Alignment;
-
 /**
  * @author 086
  */
@@ -9,7 +7,7 @@ public abstract class AlignedSpacedLayout extends AlignedLayout implements Space
 
     private double spacing;
 
-    public AlignedSpacedLayout(Type type) {
+    AlignedSpacedLayout(Type type) {
         super(type);
     }
 

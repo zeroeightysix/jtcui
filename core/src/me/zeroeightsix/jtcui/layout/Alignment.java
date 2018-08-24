@@ -14,10 +14,10 @@ public enum Alignment {
     BOTTOM_CENTER(false, true, false, false),
     BOTTOM_RIGHT(false, true, false, true);
 
-    boolean isTop;
-    boolean isBottom;
-    boolean isLeft;
-    boolean isRight;
+    final boolean isTop;
+    final boolean isBottom;
+    final boolean isLeft;
+    final boolean isRight;
 
     Alignment(boolean isTop, boolean isBottom, boolean isLeft, boolean isRight) {
         this.isTop = isTop;

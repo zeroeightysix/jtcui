@@ -8,14 +8,14 @@ import me.zeroeightsix.jtcui.Space;
  */
 abstract class ExplorableContainer extends BaseContainer {
 
-    public ExplorableContainer() {
+    ExplorableContainer() {
     }
 
-    public ExplorableContainer(int x, int y) {
+    ExplorableContainer(int x, int y) {
         super(x, y);
     }
 
-    public ExplorableContainer(int x, int y, int width, int height) {
+    ExplorableContainer(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 

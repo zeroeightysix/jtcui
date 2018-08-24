@@ -6,19 +6,19 @@ import java.util.function.Consumer;
  * @author 086
  */
 public class SimpleComponent extends BaseComponent implements Toggleable, Labeled, Actionable<SimpleComponent> {
+    private Consumer<SimpleComponent> action;
+    private String text;
+    private boolean textWrapping = true;
     private boolean enabled;
-    Consumer<SimpleComponent> action;
-    String text;
-    boolean textWrapping = true;
 
-    public SimpleComponent() {
+    SimpleComponent() {
     }
 
-    public SimpleComponent(int x, int y) {
+    SimpleComponent(int x, int y) {
         super(x, y);
     }
 
-    public SimpleComponent(int x, int y, int width, int height) {
+    SimpleComponent(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 
