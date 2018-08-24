@@ -36,7 +36,7 @@ public abstract class SelfSizingLayout extends AbstractLayout {
             children.forEach(child -> {
                 Space space = child.getSpace();
                 w[0] = Math.max(w[0], Math.abs(space.xProperty().get()) + Math.abs(space.widthProperty().get()));
-                h[0] = Math.max(h[0], Math.abs(space.xProperty().get()) + Math.abs(space.widthProperty().get()));
+                h[0] = Math.max(h[0], Math.abs(space.yProperty().get()) + Math.abs(space.heightProperty().get()));
             });
             Space space = component.getSpace();
             int fw = 0, fh = 0;
