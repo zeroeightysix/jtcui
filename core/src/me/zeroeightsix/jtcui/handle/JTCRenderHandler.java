@@ -2,7 +2,6 @@ package me.zeroeightsix.jtcui.handle;
 
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.component.Component;
-import me.zeroeightsix.jtcui.component.Container;
 
 import java.util.List;
 

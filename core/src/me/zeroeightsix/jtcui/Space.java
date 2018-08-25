@@ -4,8 +4,6 @@ import javafx.beans.property.SimpleDoubleProperty;
 import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.layout.layouts.AbstractLayout;
 
-import java.util.Optional;
-
 /**
  * @author 086
  */
@@ -13,10 +11,10 @@ public class Space {
 
     final Component parent;
 
-    private SimpleDoubleProperty x = new SimpleUpdatingDoubleProperty(this, "x", 0);
-    private SimpleDoubleProperty y = new SimpleUpdatingDoubleProperty(this, "y", 0);
-    private SimpleDoubleProperty width = new SimpleUpdatingDoubleProperty(this, "width", 0);
-    private SimpleDoubleProperty height = new SimpleUpdatingDoubleProperty(this, "height", 0);
+    private final SimpleDoubleProperty x = new SimpleUpdatingDoubleProperty(this, "x", 0);
+    private final SimpleDoubleProperty y = new SimpleUpdatingDoubleProperty(this, "y", 0);
+    private final SimpleDoubleProperty width = new SimpleUpdatingDoubleProperty(this, "width", 0);
+    private final SimpleDoubleProperty height = new SimpleUpdatingDoubleProperty(this, "height", 0);
 
     public Space(Component parent, double x, double y, double width, double height) {
         this.parent = parent;

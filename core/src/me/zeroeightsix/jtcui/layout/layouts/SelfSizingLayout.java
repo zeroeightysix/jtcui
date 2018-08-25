@@ -6,14 +6,13 @@ import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.component.Container;
 
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author 086
  */
 public abstract class SelfSizingLayout extends AbstractLayout {
 
-    Type type;
+    final Type type;
 
     public SelfSizingLayout(Type type) {
         this.type = type;

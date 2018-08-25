@@ -1,6 +1,5 @@
 package me.zeroeightsix.jtcui.layout.layouts;
 
-import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.layout.Alignment;
 
 /**

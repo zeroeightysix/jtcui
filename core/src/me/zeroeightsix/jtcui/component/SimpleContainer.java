@@ -5,7 +5,6 @@ import me.zeroeightsix.jtcui.JTC;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by 086 on 23/04/2018.
@@ -14,7 +13,7 @@ import java.util.Optional;
  */
 public class SimpleContainer extends ExplorableContainer {
 
-    private List<Component> components = new ArrayList<Component>() {
+    private final List<Component> components = new ArrayList<Component>() {
 
         private void update() {
             JTC.update(JTC.getRootParent(SimpleContainer.this));

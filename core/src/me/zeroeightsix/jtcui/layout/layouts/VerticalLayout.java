@@ -8,7 +8,6 @@ import me.zeroeightsix.jtcui.layout.Grow;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Consumer;
 
 /**
  * @author 086
@@ -34,7 +33,7 @@ public class VerticalLayout extends AlignedSpacedLayout {
 
             AtomicReference<Double> placeY = new AtomicReference<>(alignment.isTop() ? y : (alignment.isBottom() ? y + height : 0));
 
-            final int mult = alignment.isBottom() ? -1 : 1;
+            final int multiplier = alignment.isBottom() ? -1 : 1;
 
             components.forEach(child -> {
                 Optional.ofNullable(growMap.get(child)).ifPresent(grow -> child.getSpace().widthProperty().set(width * grow.getModifier()));
@@ -47,7 +46,7 @@ public class VerticalLayout extends AlignedSpacedLayout {
 
                 if (!alignment.isCenterVertical())
                     child.getSpace().yProperty().set(placeY.get());
-                placeY.updateAndGet(v -> mult * (v + child.getSpace().heightProperty().get() + getSpacing()));
+                placeY.updateAndGet(v -> multiplier * (v + child.getSpace().heightProperty().get() + getSpacing()));
             });
 
             if (alignment.isCenterVertical()) {

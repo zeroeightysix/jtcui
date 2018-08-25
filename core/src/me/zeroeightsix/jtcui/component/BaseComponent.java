@@ -14,12 +14,12 @@ import java.util.List;
  */
 public class BaseComponent implements Component {
 
-    private Space space;
-    private Requirements requirements;
+    private final Space space;
+    private final Requirements requirements;
 
     private Component parent;
     private Layout layout;
-    private ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
+    private final ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
 
     public BaseComponent() {
         this(0,0);

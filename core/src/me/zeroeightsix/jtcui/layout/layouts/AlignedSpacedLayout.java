@@ -1,7 +1,5 @@
 package me.zeroeightsix.jtcui.layout.layouts;
 
-import me.zeroeightsix.jtcui.layout.Alignment;
-
 /**
  * @author 086
  */

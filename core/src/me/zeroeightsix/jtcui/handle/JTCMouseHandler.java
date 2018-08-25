@@ -18,7 +18,7 @@ import java.util.Optional;
  */
 public class JTCMouseHandler implements MouseHandler {
 
-    JTC theJTC;
+    final JTC theJTC;
 
     public JTCMouseHandler(JTC theJTC) {
         this.theJTC = theJTC;
@@ -27,7 +27,7 @@ public class JTCMouseHandler implements MouseHandler {
     @Override
     public void onMouse(MouseAction action, int x, int y, int button) {
         funnel(theJTC, x, y).ifPresent(c -> {
-            Point position = theJTC.getRealPosition(c);
+            Point position = JTC.getRealPosition(c);
             int nx = x-position.getX(), ny = y-position.getY();
             theJTC.getComponentHandle(c).onMouse(c, action, nx, ny, button);
             c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onMouse(action, nx, ny, button));
@@ -37,7 +37,7 @@ public class JTCMouseHandler implements MouseHandler {
     @Override
     public void onScroll(int scrolled, int x, int y) {
         funnel(theJTC, x, y).ifPresent(c -> {
-            Point position = theJTC.getRealPosition(c);
+            Point position = JTC.getRealPosition(c);
             int nx = x-position.getX(), ny = y-position.getY();
             theJTC.getComponentHandle(c).onScroll(c, scrolled, nx, ny);
             c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onScroll(scrolled, nx, ny));
@@ -49,7 +49,7 @@ public class JTCMouseHandler implements MouseHandler {
                 || y < theJTC.getRootComponent().getSpace().yProperty().get())
             return Optional.empty();
         Component c = theJTC.getRootComponent().explore(x - theJTC.getRootComponent().getSpace().xProperty().get(), y - theJTC.getRootComponent().getSpace().yProperty().get());
-        if (c.getMouseHandlers() != null) return Optional.ofNullable(c);
+        if (c.getMouseHandlers() != null) return Optional.of(c);
         return Optional.empty();
     }
 

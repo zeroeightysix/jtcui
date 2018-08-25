@@ -8,7 +8,6 @@ import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
-import me.zeroeightsix.jtcui.layout.layouts.Layout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
 import java.lang.annotation.Retention;
@@ -16,7 +15,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Vector;
 
 /**
  * Created by 086 on 23/04/2018.
