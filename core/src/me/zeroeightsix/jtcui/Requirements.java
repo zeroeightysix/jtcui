@@ -21,28 +21,28 @@ public class Requirements {
         return minimumHeight;
     }
 
-    public void setMinimumHeight(int minimumHeight) {
-        this.minimumHeight = minimumHeight;
-    }
-
     public int getMinimumWidth() {
         return minimumWidth;
+    }
+
+    public int getMaximumHeight() {
+        return maximumHeight;
+    }
+
+    public int getMaximumWidth() {
+        return maximumWidth;
     }
 
     public void setMinimumWidth(int minimumWidth) {
         this.minimumWidth = minimumWidth;
     }
 
-    private int getMaximumHeight() {
-        return maximumHeight;
+    public void setMinimumHeight(int minimumHeight) {
+        this.minimumHeight = minimumHeight;
     }
 
     public void setMaximumHeight(int maximumHeight) {
         this.maximumHeight = maximumHeight;
-    }
-
-    private int getMaximumWidth() {
-        return maximumWidth;
     }
 
     public void setMaximumWidth(int maximumWidth) {

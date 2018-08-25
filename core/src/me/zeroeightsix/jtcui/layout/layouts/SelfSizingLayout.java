@@ -6,15 +6,16 @@ import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.component.Container;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author 086
  */
 public abstract class SelfSizingLayout extends AbstractLayout {
 
-    private final Type type;
+    Type type;
 
-    SelfSizingLayout(Type type) {
+    public SelfSizingLayout(Type type) {
         this.type = type;
     }
 
@@ -44,8 +45,8 @@ public abstract class SelfSizingLayout extends AbstractLayout {
                 fw = fat.getRight();
                 fh = fat.getBottom();
             }
-            space.widthProperty().set(w[0] + fw);
-            space.heightProperty().set(h[0] + fh);
+            space.widthProperty().set(w[0]+fw);
+            space.heightProperty().set(h[0]+fh);
         });
     }
 

@@ -1,5 +1,7 @@
 package me.zeroeightsix.jtcui.handle;
 
+import me.zeroeightsix.jtcui.JTC;
+
 /**
  * Created by 086 on 21/05/2018.
  */

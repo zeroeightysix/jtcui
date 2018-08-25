@@ -9,13 +9,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  */
 public class Fonts {
 
-    public static BitmapFont robotoCondensedBold = new BitmapFont(Gdx.files.internal("robotocondensedbold.fnt"), Gdx.files.internal("robotocondensedbold.png"), true);
     private static SpriteBatch batch = new SpriteBatch();
+
+    public static BitmapFont robotoCondensedBold = new BitmapFont(Gdx.files.internal("robotocondensedbold.fnt"), Gdx.files.internal("robotocondensedbold.png"), true);
 
     public static void draw(BitmapFont font, String text, int x, int y) {
         batch.setProjectionMatrix(Launcher.camera.combined);
         batch.begin();
-        font.setColor(0, 0, 0, 1);
+        font.setColor(0,0,0,1);
         font.draw(batch, text, x + Launcher.camera.position.x, y + Launcher.camera.position.y);
         batch.end();
     }

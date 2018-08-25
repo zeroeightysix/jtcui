@@ -5,7 +5,7 @@ package me.zeroeightsix.jtcui;
  */
 public class Fat {
 
-    public static final Fat NO_FAT = new Fat(0, 0, 0, 0);
+    public static final Fat NO_FAT = new Fat(0,0,0,0);
 
     private final int left;
     private final int right;

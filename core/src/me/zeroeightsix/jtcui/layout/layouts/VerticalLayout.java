@@ -8,6 +8,7 @@ import me.zeroeightsix.jtcui.layout.Grow;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Consumer;
 
 /**
  * @author 086
@@ -18,10 +19,6 @@ public class VerticalLayout extends AlignedSpacedLayout {
 
     public VerticalLayout(Type type) {
         super(type);
-    }
-
-    public static void setGrow(Component component, Grow grow) {
-        growMap.put(component, grow);
     }
 
     @Override
@@ -62,6 +59,10 @@ public class VerticalLayout extends AlignedSpacedLayout {
                 }
             }
         });
+    }
+
+    public static void setGrow(Component component, Grow grow) {
+        growMap.put(component, grow);
     }
 
 }

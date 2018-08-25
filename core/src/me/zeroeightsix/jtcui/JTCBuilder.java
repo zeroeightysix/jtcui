@@ -12,7 +12,7 @@ public class JTCBuilder {
     private RenderHandler renderHandler;
     private MouseHandler mouseHandler = null;
 
-    private JTCBuilder(RenderHandler renderHandler) {
+    JTCBuilder(RenderHandler renderHandler) {
         this.renderHandler = renderHandler;
     }
 

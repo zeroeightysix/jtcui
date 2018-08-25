@@ -3,14 +3,12 @@ package me.zeroeightsix.jtcui.component;
 /**
  * @author 086
  */
-interface Labeled {
+public interface Labeled {
 
     String getText();
-
     void setText(String text);
 
     boolean isWrapping();
-
     void setWrapping(boolean wrapping);
 
 }

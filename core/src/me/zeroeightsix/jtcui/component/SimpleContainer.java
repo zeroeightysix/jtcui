@@ -5,6 +5,7 @@ import me.zeroeightsix.jtcui.JTC;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by 086 on 23/04/2018.
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class SimpleContainer extends ExplorableContainer {
 
-    private final List<Component> components = new ArrayList<Component>() {
+    private List<Component> components = new ArrayList<Component>() {
 
         private void update() {
             JTC.update(JTC.getRootParent(SimpleContainer.this));
@@ -51,14 +52,14 @@ public class SimpleContainer extends ExplorableContainer {
         }
     };
 
-    protected SimpleContainer() {
+    public SimpleContainer() {
     }
 
-    protected SimpleContainer(int x, int y) {
+    public SimpleContainer(int x, int y) {
         super(x, y);
     }
 
-    SimpleContainer(int x, int y, int width, int height) {
+    public SimpleContainer(int x, int y, int width, int height) {
         super(x, y, width, height);
     }
 

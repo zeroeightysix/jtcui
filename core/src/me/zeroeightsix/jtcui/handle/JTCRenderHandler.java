@@ -2,6 +2,7 @@ package me.zeroeightsix.jtcui.handle;
 
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.component.Component;
+import me.zeroeightsix.jtcui.component.Container;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * The default JTC Render handler.<br>
  * Will perform all component looping and logic for you.
  */
-abstract class JTCRenderHandler implements RenderHandler {
+public abstract class JTCRenderHandler implements RenderHandler {
 
     private void recursiveRender(JTC theJTC, Component component) {
         theJTC.getComponentHandle(component).draw(component);

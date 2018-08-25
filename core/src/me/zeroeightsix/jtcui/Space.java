@@ -4,17 +4,19 @@ import javafx.beans.property.SimpleDoubleProperty;
 import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.layout.layouts.AbstractLayout;
 
+import java.util.Optional;
+
 /**
  * @author 086
  */
 public class Space {
 
-    private final Component parent;
+    final Component parent;
 
-    private final SimpleDoubleProperty x = new SimpleUpdatingDoubleProperty(this, "x", 0);
-    private final SimpleDoubleProperty y = new SimpleUpdatingDoubleProperty(this, "y", 0);
-    private final SimpleDoubleProperty width = new SimpleUpdatingDoubleProperty(this, "width", 0);
-    private final SimpleDoubleProperty height = new SimpleUpdatingDoubleProperty(this, "height", 0);
+    private SimpleDoubleProperty x = new SimpleUpdatingDoubleProperty(this, "x", 0);
+    private SimpleDoubleProperty y = new SimpleUpdatingDoubleProperty(this, "y", 0);
+    private SimpleDoubleProperty width = new SimpleUpdatingDoubleProperty(this, "width", 0);
+    private SimpleDoubleProperty height = new SimpleUpdatingDoubleProperty(this, "height", 0);
 
     public Space(Component parent, double x, double y, double width, double height) {
         this.parent = parent;
@@ -24,11 +26,11 @@ public class Space {
         this.height.set(height);
     }
 
-    private Space withAdded(double x, double y, double width, double height) {
+    public Space withAdded(double x, double y, double width, double height) {
         return new Space(parent, xProperty().get() + x, yProperty().get() + y, widthProperty().get() + width, heightProperty().get() + height);
     }
 
-    private Space withoutFat(Fat fat) {
+    public Space withoutFat(Fat fat) {
         return withAdded(fat.getLeft(), fat.getTop(), -(fat.getRight() + fat.getLeft()), -(fat.getBottom() + fat.getTop()));
     }
 
@@ -58,7 +60,7 @@ public class Space {
     }
 
     private class SimpleUpdatingDoubleProperty extends SimpleDoubleProperty {
-        SimpleUpdatingDoubleProperty(Object bean, String name, double initialValue) {
+        public SimpleUpdatingDoubleProperty(Object bean, String name, double initialValue) {
             super(bean, name, initialValue);
         }
 

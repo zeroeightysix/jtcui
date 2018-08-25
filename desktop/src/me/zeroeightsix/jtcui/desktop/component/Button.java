@@ -39,10 +39,8 @@ public class Button extends SimpleComponent {
         glyphLayout.setText(Fonts.robotoCondensedBold, getText());
         getRequirements().setMinimumWidth(100);
 //        getRequirements().setMinimumWidth((int) glyphLayout.width + (getIcon() == null ? 32 : 36));
-        if (getSpace().widthProperty().get() < getRequirements().getMinimumWidth())
-            getSpace().widthProperty().set(getRequirements().getMinimumWidth());
-        if (getSpace().heightProperty().get() < getRequirements().getMinimumHeight())
-            getSpace().heightProperty().set(getRequirements().getMinimumHeight());
+        if (getSpace().widthProperty().get() < getRequirements().getMinimumWidth()) getSpace().widthProperty().set(getRequirements().getMinimumWidth());
+        if (getSpace().heightProperty().get() < getRequirements().getMinimumHeight()) getSpace().heightProperty().set(getRequirements().getMinimumHeight());
     }
 
     public Texture getIcon() {
@@ -73,11 +71,11 @@ public class Button extends SimpleComponent {
             renderer.color(1, 1, 1, 1);
             renderer.vertex(tX, tY, 0);
             renderer.color(1, 1, 1, 1);
-            renderer.vertex(tX + width, tY, 0);
+            renderer.vertex(tX+width, tY, 0);
             renderer.color(1, 1, 1, 1);
-            renderer.vertex(tX + width, tY + height, 0);
+            renderer.vertex(tX+width, tY+height, 0);
             renderer.color(1, 1, 1, 1);
-            renderer.vertex(tX, tY + height, 0);
+            renderer.vertex(tX, tY+height, 0);
             renderer.end();
 
             Fonts.draw(Fonts.robotoCondensedBold, component.getText(), 0, 0);
