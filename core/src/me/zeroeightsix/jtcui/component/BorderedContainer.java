@@ -3,11 +3,18 @@ package me.zeroeightsix.jtcui.component;
 import me.zeroeightsix.jtcui.Fat;
 
 /**
- * A component with a border, where its children aren't supposed to be. Something like a window.
+ * A component with a border, where its children are not supposed to be.
+ *
  * @author 086
  */
 public class BorderedContainer extends SimpleContainer {
 
+    /**
+     * The fat for this container
+     *
+     * @see Fat
+     * @see Container#getFat()
+     */
     private final Fat fat;
 
     public BorderedContainer(Fat fat) {

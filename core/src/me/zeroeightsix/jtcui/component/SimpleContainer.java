@@ -9,12 +9,17 @@ import java.util.List;
 /**
  * A container backed by an ArrayList
  *
+ * @author 086
  * @see BaseContainer
  * @see SimpleComponent
- * @author 086
  */
 public class SimpleContainer extends ExplorableContainer {
 
+    /**
+     * A list of this containers children.
+     *
+     * @see Component#getChildren()
+     */
     private final List<Component> components = new ArrayList<Component>() {
 
         private void update() {

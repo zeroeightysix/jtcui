@@ -3,7 +3,11 @@ package me.zeroeightsix.jtcui.component;
 import me.zeroeightsix.jtcui.Fat;
 
 /**
+ * A container with borders for usage with directional layouts
+ *
  * @author 086
+ * @see VBox
+ * @see HBox
  */
 public class DirectionalSpacedContainer extends BorderedContainer {
     public DirectionalSpacedContainer(Fat fat) {

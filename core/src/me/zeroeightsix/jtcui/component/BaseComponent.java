@@ -12,9 +12,9 @@ import java.util.List;
 /**
  * A basic implementation of {@link Component}
  *
+ * @author 086
  * @see SimpleComponent
  * @see SimpleContainer
- * @author 086
  */
 public class BaseComponent implements Component {
 
@@ -26,7 +26,7 @@ public class BaseComponent implements Component {
     private final ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
 
     public BaseComponent() {
-        this(0,0);
+        this(0, 0);
     }
 
     public BaseComponent(int x, int y) {
