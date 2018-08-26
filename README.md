@@ -11,3 +11,14 @@ Because of its nature, jtcui can be implemented anywhere: be it LWJGL, java2d or
 ## Documentation
 
 No documentation written yet. See [my debugging implementation](https://github.com/zeroeightysix/jtcui/tree/master/desktop/src/me/zeroeightsix/jtcui/desktop) for an example. (using libGDX)
+
+## Trying out jtcui
+
+This repository contains two modules: the jtcui [core](https://github.com/zeroeightysix/jtcui/tree/master/core) (the library itself) and the testing module [desktop](https://github.com/zeroeightysix/jtcui/tree/master/desktop). To test out jtcui, simply clone it:
+
+```
+git clone https://github.com/zeroeightysix/jtcui/
+````
+Import it into your favourite IDE, create a run configuration for `me.zeroeightsix.jtcui.desktop.DesktopLauncher.main()` and set the working directory to `desktop/assets/`.
+
+That's it - you can find all important user-faced code in `Launcher`.
