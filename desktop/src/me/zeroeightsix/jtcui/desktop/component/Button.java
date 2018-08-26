@@ -17,6 +17,8 @@ import org.lwjgl.opengl.GL11;
 @JTC.Install(Button.ButtonHandle.class)
 public class Button extends SimpleComponent {
 
+    private boolean isPressed = false;
+
     private static GlyphLayout glyphLayout = new GlyphLayout();
     Texture icon = null;
 
@@ -67,14 +69,15 @@ public class Button extends SimpleComponent {
             float tY = Launcher.camera.position.y;
             int width = (int) component.getSpace().widthProperty().get();
             int height = (int) component.getSpace().heightProperty().get();
+            int red = component.isPressed ? 0 : 1;
             renderer.begin(Launcher.camera.combined, GL11.GL_QUADS);
-            renderer.color(1, 1, 1, 1);
+            renderer.color(red, 1, 1, 1);
             renderer.vertex(tX, tY, 0);
-            renderer.color(1, 1, 1, 1);
+            renderer.color(red, 1, 1, 1);
             renderer.vertex(tX+width, tY, 0);
-            renderer.color(1, 1, 1, 1);
+            renderer.color(red, 1, 1, 1);
             renderer.vertex(tX+width, tY+height, 0);
-            renderer.color(1, 1, 1, 1);
+            renderer.color(red, 1, 1, 1);
             renderer.vertex(tX, tY+height, 0);
             renderer.end();
 
@@ -83,7 +86,14 @@ public class Button extends SimpleComponent {
 
         @Override
         public void onMouse(Button component, MouseHandler.MouseAction action, int x, int y, int button) {
-
+            switch (action) {
+                case DOWN:
+                    component.isPressed = true;
+                    break;
+                case RELEASE:
+                    component.isPressed = false;
+                    break;
+            }
         }
 
         @Override
