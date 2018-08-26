@@ -95,8 +95,10 @@ public class JTC {
                                 .findAny()
                                 .map(Map.Entry::getValue)
                                 .orElse(null);
+//                        if (handle == null)
+//                            throw new JTCMissingHandleException(component);
                         if (handle == null)
-                            throw new JTCMissingHandleException(component);
+                            return ComponentHandle.EMPTY_HANDLE;
                     }
                 }
             }

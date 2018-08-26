@@ -12,24 +12,10 @@ import org.lwjgl.opengl.GL11;
  */
 public class DBoxHandle implements ComponentHandle<DirectionalSpacedContainer> {
 
-    ImmediateModeRenderer20 renderer = new ImmediateModeRenderer20(false, true, 0);
 
     @Override
     public void draw(DirectionalSpacedContainer component) {
-        float tX = Launcher.camera.position.x;
-        float tY = Launcher.camera.position.y;
-        int width = (int) component.getSpace().widthProperty().get();
-        int height = (int) component.getSpace().heightProperty().get();
-        renderer.begin(Launcher.camera.combined, GL11.GL_QUADS);
-        renderer.color(.4f, .121f, 1, 1);
-        renderer.vertex(tX, tY, 0);
-        renderer.color(.4f, .121f, 1, 1);
-        renderer.vertex(tX + width, tY, 0);
-        renderer.color(.4f, .121f, 1, 1);
-        renderer.vertex(tX + width, tY + height, 0);
-        renderer.color(.4f, .121f, 1, 1);
-        renderer.vertex(tX, tY + height, 0);
-        renderer.end();
+
     }
 
     @Override

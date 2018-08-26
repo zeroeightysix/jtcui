@@ -8,10 +8,14 @@ import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.JTCBuilder;
 import me.zeroeightsix.jtcui.component.DirectionalSpacedContainer;
+import me.zeroeightsix.jtcui.component.SimpleContainer;
 import me.zeroeightsix.jtcui.desktop.component.Button;
 import me.zeroeightsix.jtcui.component.HBox;
+import me.zeroeightsix.jtcui.desktop.component.Window;
 import me.zeroeightsix.jtcui.desktop.handle.DBoxHandle;
+import me.zeroeightsix.jtcui.layout.layouts.FixedSelfSizingLayout;
 import me.zeroeightsix.jtcui.layout.layouts.HorizontalLayout;
+import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
 public class Launcher extends ApplicationAdapter {
 
@@ -32,11 +36,17 @@ public class Launcher extends ApplicationAdapter {
 
 	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
 
-        HBox hBox = new HBox(new Fat(20, 5, 20, 5));
-		((HorizontalLayout) hBox.getLayout()).setSpacing(5);
-		hBox.getChildren().add(new Button("Button 1"));
-		hBox.getChildren().add(new Button("Button 2"));
-        jtc.getRootComponent().getChildren().add(hBox);
+//        HBox hBox = new HBox(new Fat(20, 5, 20, 5));
+//		((HorizontalLayout) hBox.getLayout()).setSpacing(5);
+//		hBox.getChildren().add(new Button("Button 1"));
+//		hBox.getChildren().add(new Button("Button 2"));
+		SimpleContainer root = new SimpleContainer();
+		root.setLayout(new FixedSelfSizingLayout(SelfSizingLayout.Type.EXPANDING));
+
+		Window window = new Window(10,10, 50, 50, 20, 5);
+
+		root.getChildren().add(window);
+        jtc.getRootComponent().getChildren().add(root);
     }
 
 	@Override

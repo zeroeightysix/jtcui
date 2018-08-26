@@ -9,6 +9,15 @@ import me.zeroeightsix.jtcui.component.Component;
  */
 public interface ComponentHandle<T extends Component> {
 
+    ComponentHandle<Component> EMPTY_HANDLE = new ComponentHandle<Component>() {
+        @Override
+        public void draw(Component component) {}
+        @Override
+        public void onMouse(Component component, MouseHandler.MouseAction action, int x, int y, int button) {}
+        @Override
+        public void onScroll(Component component, int scrolled, int x, int y) {}
+    };
+
     void draw(T component);
     void onMouse(T component, MouseHandler.MouseAction action, int x, int y, int button);
     void onScroll(T component, int scrolled, int x, int y);
