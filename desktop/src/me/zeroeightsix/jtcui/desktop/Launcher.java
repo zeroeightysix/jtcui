@@ -14,8 +14,10 @@ import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.JTCBuilder;
 import me.zeroeightsix.jtcui.desktop.component.Button;
+import me.zeroeightsix.jtcui.desktop.component.HBox;
 import me.zeroeightsix.jtcui.desktop.component.VBox;
 import me.zeroeightsix.jtcui.handle.JTCMouseHandler;
+import me.zeroeightsix.jtcui.layout.layouts.HorizontalLayout;
 
 public class Launcher extends ApplicationAdapter {
 
@@ -23,7 +25,7 @@ public class Launcher extends ApplicationAdapter {
 
 	private JTC jtc;
 
-	private VBox vBox;
+	private HBox hBox;
 	private Button button;
 
 	@Override
@@ -38,10 +40,11 @@ public class Launcher extends ApplicationAdapter {
 
 	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
 
-        vBox = new VBox(new Fat(20, 5, 20, 5));
-		button = new Button("Button");
-		vBox.getChildren().add(button);
-        jtc.getRootComponent().getChildren().add(vBox);
+        hBox = new HBox(new Fat(20, 5, 20, 5));
+		((HorizontalLayout) hBox.getLayout()).setSpacing(5);
+		hBox.getChildren().add(new Button("Button 1"));
+		hBox.getChildren().add(new Button("Button 2"));
+        jtc.getRootComponent().getChildren().add(hBox);
     }
 
 	@Override
