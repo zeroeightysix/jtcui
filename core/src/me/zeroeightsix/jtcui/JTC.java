@@ -32,11 +32,6 @@ public class JTC {
     private final HashMap<Class<? extends Component>, ComponentHandle> classComponentHandleHashMap = new HashMap<>();
     private final HashMap<Component, ComponentHandle> componentHandleHashMap = new HashMap<>();
 
-    void setHandlers(RenderHandler render, MouseHandler mouse) {
-        this.render = render;
-        this.mouse = mouse;
-    }
-
     /**
      * Request all components to be drawn in order
      */
