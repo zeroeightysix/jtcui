@@ -32,7 +32,8 @@ public class JTCBuilder {
 
     public JTC build() {
         JTC jtc = new JTC();
-        jtc.setHandlers(renderHandler, mouseHandler == null ? new JTCMouseHandler(jtc) : mouseHandler);
+        jtc.render = renderHandler;
+        jtc.mouse = mouseHandler == null ? new JTCMouseHandler(jtc) : mouseHandler;
         return jtc;
     }
 
