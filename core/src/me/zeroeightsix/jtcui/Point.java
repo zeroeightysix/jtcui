@@ -1,6 +1,8 @@
 package me.zeroeightsix.jtcui;
 
 /**
+ * A 2-dimensional point
+ *
  * @author 086
  */
 public class Point {

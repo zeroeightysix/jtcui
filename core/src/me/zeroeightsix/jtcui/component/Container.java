@@ -3,10 +3,15 @@ package me.zeroeightsix.jtcui.component;
 import me.zeroeightsix.jtcui.Fat;
 
 /**
- * Created by 086 on 23/04/2018.
+ * A component with {@link Fat} and that is expected to have a non-null value for {@link Component#getChildren()}
+ *
+ * @author 086
  */
 public interface Container extends Component {
 
+    /**
+     * @return The fat for this container
+     */
     Fat getFat();
 
 }

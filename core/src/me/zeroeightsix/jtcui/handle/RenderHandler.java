@@ -1,13 +1,15 @@
 package me.zeroeightsix.jtcui.handle;
 
 /**
- * Created by 086 on 21/05/2018.
+ * The render handler takes care of translations and scissor testing.
+ *
+ * @author 086
  */
 public interface RenderHandler {
 
     /**
      * Defines the scissor box. See openGL's glScissor.
-     * This method is expected to also enable the scissor test.
+     * This method is expected to also enable a scissor test.
      *
      * @param top    The y coordinate of the top left corner
      * @param left   The x coordinate of the top left corner

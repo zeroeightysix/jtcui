@@ -7,14 +7,9 @@ import me.zeroeightsix.jtcui.component.Component;
 import java.util.Optional;
 
 /**
- * Created by 086 on 23/04/2018.<br><br>
- * <p>
- * The default JTC mouse handler<br>
- * Assumes the following buttons are:<br>
- * 0 - Left click<br>
- * 1 - Right click<br>
- * 2 - Middle mouse button click<br>
- * 3, 4, ... - Extra buttons
+ * The default JTC mouse handler. Implements mouse actions.
+ *
+ * @author 086
  */
 public class JTCMouseHandler implements MouseHandler {
 
@@ -39,7 +34,7 @@ public class JTCMouseHandler implements MouseHandler {
             }
 
             Point position = JTC.getRealPosition(c);
-            int nx = x-position.getX(), ny = y-position.getY();
+            int nx = x - position.getX(), ny = y - position.getY();
             theJTC.getComponentHandle(c).onMouse(c, action, nx, ny, button);
             c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onMouse(action, nx, ny, button));
 
@@ -52,7 +47,7 @@ public class JTCMouseHandler implements MouseHandler {
     public void onScroll(int scrolled, int x, int y) {
         coalesce(focus, funnel(theJTC, x, y).orElse(null)).ifPresent(c -> {
             Point position = JTC.getRealPosition(c);
-            int nx = x-position.getX(), ny = y-position.getY();
+            int nx = x - position.getX(), ny = y - position.getY();
             theJTC.getComponentHandle(c).onScroll(c, scrolled, nx, ny);
             c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onScroll(scrolled, nx, ny));
         });

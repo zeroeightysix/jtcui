@@ -5,6 +5,8 @@ import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.layout.layouts.AbstractLayout;
 
 /**
+ * The location and dimensions of a component
+ *
  * @author 086
  */
 public class Space {

@@ -4,7 +4,10 @@ import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.Space;
 
 /**
+ * A container that implements exploring functionality
+ *
  * @author 086
+ * @see Component#explore(double, double)
  */
 abstract class ExplorableContainer extends BaseContainer {
 

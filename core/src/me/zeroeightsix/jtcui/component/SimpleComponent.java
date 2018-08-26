@@ -3,6 +3,10 @@ package me.zeroeightsix.jtcui.component;
 import java.util.function.Consumer;
 
 /**
+ * A basic component with implementations for {@link Toggleable}, {@link Labeled} and {@link Actionable}
+ *
+ * @see BaseComponent
+ * @see SimpleContainer
  * @author 086
  */
 public class SimpleComponent extends BaseComponent implements Toggleable, Labeled, Actionable<SimpleComponent> {

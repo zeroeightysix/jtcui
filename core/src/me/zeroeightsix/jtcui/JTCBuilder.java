@@ -5,7 +5,7 @@ import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 
 /**
- * Created by 086 on 23/05/2018.
+ * @author 086
  */
 public class JTCBuilder {
 

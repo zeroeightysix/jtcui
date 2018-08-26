@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 086 on 23/04/2018.
+ * A basic implementation of {@link Component}
+ *
+ * @author 086
+ * @see SimpleComponent
+ * @see SimpleContainer
  */
 public class BaseComponent implements Component {
 
@@ -22,7 +26,7 @@ public class BaseComponent implements Component {
     private final ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
 
     public BaseComponent() {
-        this(0,0);
+        this(0, 0);
     }
 
     public BaseComponent(int x, int y) {

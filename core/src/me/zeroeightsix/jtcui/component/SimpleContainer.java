@@ -7,12 +7,19 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by 086 on 23/04/2018.
- * <br>
  * A container backed by an ArrayList
+ *
+ * @author 086
+ * @see BaseContainer
+ * @see SimpleComponent
  */
 public class SimpleContainer extends ExplorableContainer {
 
+    /**
+     * A list of this containers children.
+     *
+     * @see Component#getChildren()
+     */
     private final List<Component> components = new ArrayList<Component>() {
 
         private void update() {

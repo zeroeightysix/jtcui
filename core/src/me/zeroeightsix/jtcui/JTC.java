@@ -17,7 +17,9 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Created by 086 on 23/04/2018.
+ * The main JTC class. JTC, Just the core UI, is a dependency-less UI framework for integration anywhere.
+ *
+ * @author 086
  */
 public class JTC {
 
@@ -110,6 +112,7 @@ public class JTC {
 
     /**
      * Gets the x-position of this component relative to its highest parent
+     *
      * @param component
      * @return The x coordinate of the position found
      */
@@ -119,6 +122,7 @@ public class JTC {
 
     /**
      * Gets the y-position of this component relative to its highest parent
+     *
      * @param component
      * @return The y coordinate of the position found
      */
@@ -128,6 +132,7 @@ public class JTC {
 
     /**
      * Gets the position of this component relative to its highest parent
+     *
      * @param component
      * @return The position found
      */
@@ -211,6 +216,9 @@ public class JTC {
         }
     }
 
+    /**
+     * Specifies what handler should be used for this component. Naturally, only component classes should be annotated by {@link Install}
+     */
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Install {
         Class<? extends ComponentHandle> value();

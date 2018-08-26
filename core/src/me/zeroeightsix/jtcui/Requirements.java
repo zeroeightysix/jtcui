@@ -1,6 +1,8 @@
 package me.zeroeightsix.jtcui;
 
 /**
+ * The minimum and maximum dimensions for a component
+ *
  * @author 086
  */
 public class Requirements {
