@@ -3,6 +3,8 @@ package me.zeroeightsix.jtcui.handle;
 import me.zeroeightsix.jtcui.component.Component;
 
 /**
+ * A handle for a component
+ *
  * @author 086
  */
 public interface ComponentHandle<T extends Component> {
