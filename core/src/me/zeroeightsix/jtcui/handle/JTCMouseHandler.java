@@ -7,7 +7,6 @@ import me.zeroeightsix.jtcui.component.Component;
 import java.util.Optional;
 
 /**
- * Created by 086 on 23/04/2018.<br><br>
  * <p>
  * The default JTC mouse handler<br>
  * Assumes the following buttons are:<br>
@@ -15,6 +14,8 @@ import java.util.Optional;
  * 1 - Right click<br>
  * 2 - Middle mouse button click<br>
  * 3, 4, ... - Extra buttons
+ *
+ * @author 086
  */
 public class JTCMouseHandler implements MouseHandler {
 

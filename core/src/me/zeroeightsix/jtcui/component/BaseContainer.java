@@ -3,6 +3,10 @@ package me.zeroeightsix.jtcui.component;
 import me.zeroeightsix.jtcui.Fat;
 
 /**
+ * A basic implementation of {@link Container}
+ *
+ * @see SimpleComponent
+ * @see SimpleContainer
  * @author 086
  */
 abstract class BaseContainer extends SimpleComponent implements Container {

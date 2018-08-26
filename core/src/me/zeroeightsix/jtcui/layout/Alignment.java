@@ -1,7 +1,7 @@
 package me.zeroeightsix.jtcui.layout;
 
 /**
- * Created by 086 on 23/04/2018.
+ * @author 086
  */
 public enum Alignment {
     TOP_LEFT(true, false, true, false),

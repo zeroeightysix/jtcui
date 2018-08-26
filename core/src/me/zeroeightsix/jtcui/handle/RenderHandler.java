@@ -1,7 +1,7 @@
 package me.zeroeightsix.jtcui.handle;
 
 /**
- * Created by 086 on 21/05/2018.
+ * @author 086
  */
 public interface RenderHandler {
 

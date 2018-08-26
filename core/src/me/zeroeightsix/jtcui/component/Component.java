@@ -9,7 +9,7 @@ import me.zeroeightsix.jtcui.layout.layouts.Layout;
 import java.util.List;
 
 /**
- * Created by 086 on 23/04/2018.
+ * @author 086
  */
 public interface Component {
 

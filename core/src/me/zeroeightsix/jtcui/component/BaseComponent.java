@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by 086 on 23/04/2018.
+ * A basic implementation of {@link Component}
+ *
+ * @see SimpleComponent
+ * @see SimpleContainer
+ * @author 086
  */
 public class BaseComponent implements Component {
 
