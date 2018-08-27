@@ -8,6 +8,8 @@ import me.zeroeightsix.jtcui.component.Container;
 import java.util.Optional;
 
 /**
+ * A layout that sizes itself.
+ *
  * @author 086
  */
 public abstract class SelfSizingLayout extends AbstractLayout {

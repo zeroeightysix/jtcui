@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * A self-sizing spaced layout that aligns components horizontally.
+ *
  * @author 086
  */
 public class HorizontalLayout extends AlignedSpacedLayout {

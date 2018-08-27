@@ -6,6 +6,8 @@ import me.zeroeightsix.jtcui.component.Component;
 import java.util.Optional;
 
 /**
+ * A layout that places all components in the center of their parent where the layout is applied.
+ *
  * @author 086
  */
 public class CenteredLayout extends SelfSizingLayout {

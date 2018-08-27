@@ -10,6 +10,8 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * A self-sizing spaced layout that aligns components vertically.
+ *
  * @author 086
  */
 public class VerticalLayout extends AlignedSpacedLayout {
