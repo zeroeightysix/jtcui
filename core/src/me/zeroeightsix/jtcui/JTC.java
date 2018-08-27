@@ -3,7 +3,6 @@ package me.zeroeightsix.jtcui;
 import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.component.Container;
 import me.zeroeightsix.jtcui.component.SimpleContainer;
-import me.zeroeightsix.jtcui.exception.JTCMissingHandleException;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
