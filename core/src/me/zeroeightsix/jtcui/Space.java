@@ -62,6 +62,36 @@ public class Space {
         return x >= xProperty().get() && x <= xProperty().get() + widthProperty().get() && y >= yProperty().get() && y <= yProperty().get() + heightProperty().get();
     }
 
+    /**
+     * @param otherSpace space to compare to
+     * @return true if this space fully encapsulates otherSpace
+     */
+    public boolean encapsulates(Space otherSpace) {
+        return xProperty().get() <= otherSpace.xProperty().get()
+                && yProperty().get() <= otherSpace.yProperty().get()
+                && xProperty().get() + widthProperty().get() >= otherSpace.xProperty().get() + otherSpace.widthProperty().get()
+                && yProperty().get() + heightProperty().get() >= otherSpace.yProperty().get() + otherSpace.heightProperty().get();
+    }
+
+    /**
+     * @param otherSpace space to compare to
+     * @return true if both spaces are equal
+     */
+    public boolean equals(Space otherSpace) {
+        return xProperty().get() == otherSpace.xProperty().get()
+                && yProperty().get() == otherSpace.yProperty().get()
+                && widthProperty().get() == otherSpace.widthProperty().get()
+                && heightProperty().get() == otherSpace.heightProperty().get();
+    }
+
+    /**
+     * @param otherSpace space to compare to
+     * @return true if otherSpace fully encapsulates this space
+     */
+    public boolean isInside(Space otherSpace) {
+        return otherSpace.encapsulates(this);
+    }
+
     @Override
     public String toString() {
         return String.format("Space[x=%f, y=%f, width=%f, height=%f]", xProperty().get(), yProperty().get(), widthProperty().get(), heightProperty().get());
