@@ -6,6 +6,8 @@ import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.component.Container;
 
 /**
+ * Abstract implementation of {@link Layout}.
+ *
  * @author 086
  */
 public abstract class AbstractLayout implements Layout {

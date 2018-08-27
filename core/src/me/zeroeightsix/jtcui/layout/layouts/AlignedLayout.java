@@ -3,6 +3,8 @@ package me.zeroeightsix.jtcui.layout.layouts;
 import me.zeroeightsix.jtcui.layout.Alignment;
 
 /**
+ * A self-sizing layout that implements {@link Aligned}.
+ *
  * @author 086
  */
 public abstract class AlignedLayout extends SelfSizingLayout implements Aligned {

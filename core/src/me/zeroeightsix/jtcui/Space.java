@@ -54,6 +54,14 @@ public class Space {
         return height;
     }
 
+    public boolean isPointInside(Point point) {
+        return isPointInside(point.getX(), point.getY());
+    }
+
+    public boolean isPointInside(double x, double y) {
+        return x >= xProperty().get() && x <= xProperty().get() + widthProperty().get() && y >= yProperty().get() && y <= yProperty().get() + heightProperty().get();
+    }
+
     @Override
     public String toString() {
         return String.format("Space[x=%f, y=%f, width=%f, height=%f]", xProperty().get(), yProperty().get(), widthProperty().get(), heightProperty().get());
