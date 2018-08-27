@@ -52,7 +52,8 @@ public class Window extends BorderedContainer implements Draggable {
                 double diffY = component.dragY - y;
                 component.getSpace().xProperty().set(component.getSpace().xProperty().get() - diffX);
                 component.getSpace().yProperty().set(component.getSpace().yProperty().get() - diffY);
-            }
+            } else if (action == MouseHandler.MouseAction.RELEASE)
+                component.dragging = false;
         }
 
         @Override
