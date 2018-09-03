@@ -53,7 +53,7 @@ public abstract class SelfSizingLayout extends AbstractLayout {
 
     @Override
     public void update(Component component) {
-        switch (type) {
+        switch (type) { // Fixed layouts do not self-size
             case PACKING:
                 organise(component);
                 pack(component);
@@ -66,7 +66,7 @@ public abstract class SelfSizingLayout extends AbstractLayout {
     }
 
     public enum Type {
-        PACKING, EXPANDING
+        PACKING, FIXED, EXPANDING
     }
 
 }
