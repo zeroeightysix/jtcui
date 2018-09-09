@@ -23,8 +23,8 @@ public abstract class SelfSizingLayout extends AbstractLayout {
     private void expand(Component component) {
         Optional.ofNullable(component.getParent()).ifPresent(parent -> {
             Space space = getSlimSpace(parent);
-            component.getSpace().xProperty().set(space.xProperty().get());
-            component.getSpace().yProperty().set(space.yProperty().get());
+            component.getSpace().xProperty().set(space.xProperty().get() - parent.getSpace().xProperty().get());
+            component.getSpace().yProperty().set(space.yProperty().get() - parent.getSpace().yProperty().get());
             component.getSpace().widthProperty().set(space.widthProperty().get());
             component.getSpace().heightProperty().set(space.heightProperty().get());
         });

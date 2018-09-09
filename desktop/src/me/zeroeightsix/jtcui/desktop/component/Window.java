@@ -23,7 +23,6 @@ import static me.zeroeightsix.jtcui.desktop.handle.SimpleHandle.drawBox;
 @JTC.Install(Window.WindowHandle.class)
 public class Window extends AbstractDraggable {
 
-
     public Window(int titleHeight, int borderThickness) {
         this(0, 0, 0, 0, titleHeight, borderThickness);
     }
