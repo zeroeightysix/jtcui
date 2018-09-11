@@ -29,6 +29,11 @@ public class VBox extends DirectionalSpacedContainer {
         setLayout(layout = new VerticalLayout(type));
     }
 
+    public VBox(SelfSizingLayout.Type type) {
+        super(Fat.NO_FAT);
+        setLayout(layout = new VerticalLayout(type));
+    }
+
     /**
      * @param spacing The new space between components in this container
      */

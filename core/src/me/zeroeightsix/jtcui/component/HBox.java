@@ -27,6 +27,11 @@ public class HBox extends DirectionalSpacedContainer {
         setLayout(layout = new HorizontalLayout(type));
     }
 
+    public HBox(SelfSizingLayout.Type type) {
+        super(Fat.NO_FAT);
+        setLayout(layout = new HorizontalLayout(type));
+    }
+
     /**
      * @param spacing The new space between components in this container
      */

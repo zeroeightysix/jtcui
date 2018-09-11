@@ -7,17 +7,12 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.JTCBuilder;
-import me.zeroeightsix.jtcui.component.DirectionalSpacedContainer;
-import me.zeroeightsix.jtcui.component.Pane;
-import me.zeroeightsix.jtcui.component.SimpleContainer;
+import me.zeroeightsix.jtcui.component.*;
 import me.zeroeightsix.jtcui.desktop.component.Button;
-import me.zeroeightsix.jtcui.component.HBox;
 import me.zeroeightsix.jtcui.desktop.component.Window;
 import me.zeroeightsix.jtcui.desktop.handle.DBoxHandle;
-import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
-import me.zeroeightsix.jtcui.layout.layouts.FixedSelfSizingLayout;
-import me.zeroeightsix.jtcui.layout.layouts.HorizontalLayout;
-import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
+import me.zeroeightsix.jtcui.layout.Alignment;
+import me.zeroeightsix.jtcui.layout.layouts.*;
 import org.lwjgl.Sys;
 
 public class Launcher extends ApplicationAdapter {
@@ -41,10 +36,11 @@ public class Launcher extends ApplicationAdapter {
 
         Pane pane = new Pane(new CenteredLayout(SelfSizingLayout.Type.EXPANDING), Fat.NO_FAT);
 
-        HBox hBox = new HBox(new Fat(20, 5, 20, 5));
+        DirectionalSpacedContainer hBox = new HBox(SelfSizingLayout.Type.EXPANDING);
 		((HorizontalLayout) hBox.getLayout()).setSpacing(5);
-		hBox.getChildren().add(new Button("Button 1"));
-		hBox.getChildren().add(new Button("Button 2"));
+		((HorizontalLayout) hBox.getLayout()).setAlignment(Alignment.CENTER_LEFT);
+        hBox.getChildren().add(new Button("Button 1"));
+        hBox.getChildren().add(new Button("Button 2"));
 		SimpleContainer root = new SimpleContainer();
 		root.setLayout(new FixedSelfSizingLayout(SelfSizingLayout.Type.EXPANDING));
 

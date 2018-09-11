@@ -33,9 +33,7 @@ public class VerticalLayout extends AlignedSpacedLayout {
             final double width = workspace.widthProperty().get();
             final double height = workspace.heightProperty().get();
 
-            AtomicReference<Double> placeY = new AtomicReference<>(alignment.isTop() ? y : (alignment.isBottom() ? y + height : 0));
-
-            final int multiplier = alignment.isBottom() ? -1 : 1;
+            AtomicReference<Double> placeY = new AtomicReference<>(alignment.isTop() ? y : 0);
 
             components.forEach(child -> {
                 Optional.ofNullable(growMap.get(child)).ifPresent(grow -> child.getSpace().widthProperty().set(width * grow.getModifier()));
@@ -46,16 +44,15 @@ public class VerticalLayout extends AlignedSpacedLayout {
                 else
                     child.getSpace().xProperty().set(x + (width / 2d) - (child.getSpace().widthProperty().get() / 2d));
 
-                if (!alignment.isCenterVertical())
+                if (alignment.isTop())
                     child.getSpace().yProperty().set(placeY.get());
-                placeY.updateAndGet(v -> multiplier * (v + child.getSpace().heightProperty().get() + getSpacing()));
+                placeY.updateAndGet(v -> v + child.getSpace().heightProperty().get() + getSpacing());
             });
 
-            if (alignment.isCenterVertical()) {
-                // placeY is now the total height of our children combined, let's place them, centered now
-                double posY = y + height / 2d - placeY.get();
+            if (alignment.isBottom() || alignment.isCenterVertical()) {
+                double posY = y - placeY.get() + (alignment.isBottom() ? height : height / 2d);
                 for (Component child : components) {
-                    child.getSpace().xProperty().set(posY);
+                    child.getSpace().yProperty().set(posY);
                     posY += child.getSpace().heightProperty().get() + getSpacing();
                 }
             }

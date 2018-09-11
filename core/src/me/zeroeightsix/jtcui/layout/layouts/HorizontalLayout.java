@@ -33,29 +33,26 @@ public class HorizontalLayout extends AlignedSpacedLayout {
             final double width = workspace.widthProperty().get();
             final double height = workspace.heightProperty().get();
 
-            AtomicReference<Double> placeX = new AtomicReference<>(alignment.isLeft() ? x : (alignment.isRight() ? x + width : 0));
-
-            final int multiplier = alignment.isRight() ? -1 : 1;
+            AtomicReference<Double> placeX = new AtomicReference<>(alignment.isLeft() ? x : 0);
 
             components.forEach(child -> {
                 Optional.ofNullable(growMap.get(child)).ifPresent(grow -> child.getSpace().heightProperty().set(height * grow.getModifier()));
                 if (alignment.isTop())
                     child.getSpace().yProperty().set(y);
-                else if (alignment.isRight())
+                else if (alignment.isBottom())
                     child.getSpace().yProperty().set(y + height - child.getSpace().heightProperty().get());
                 else
                     child.getSpace().yProperty().set(y + (height / 2d) - (child.getSpace().heightProperty().get() / 2d));
 
-                if (!alignment.isCenterHorizontal())
+                if (alignment.isLeft())
                     child.getSpace().xProperty().set(placeX.get());
-                placeX.updateAndGet(v -> multiplier * (v + child.getSpace().widthProperty().get() + getSpacing()));
+                placeX.updateAndGet(v -> v + child.getSpace().widthProperty().get() + getSpacing());
             });
 
-            if (alignment.isCenterHorizontal()) {
-                // placeY is now the total height of our children combined, let's place them, centered now
-                double posX = x + width / 2d - placeX.get();
+            if (alignment.isRight() || alignment.isCenterHorizontal()) {
+                double posX = x - placeX.get() + (alignment.isRight() ? width : width / 2d);
                 for (Component child : components) {
-                    child.getSpace().yProperty().set(posX);
+                    child.getSpace().xProperty().set(posX);
                     posX += child.getSpace().widthProperty().get() + getSpacing();
                 }
             }
