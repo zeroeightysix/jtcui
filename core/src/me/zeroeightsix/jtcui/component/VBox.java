@@ -2,6 +2,7 @@ package me.zeroeightsix.jtcui.component;
 
 import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.component.BorderedContainer;
+import me.zeroeightsix.jtcui.layout.Direction;
 import me.zeroeightsix.jtcui.layout.layouts.HorizontalLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 import me.zeroeightsix.jtcui.layout.layouts.VerticalLayout;
@@ -55,4 +56,8 @@ public class VBox extends DirectionalSpacedContainer {
         return layout;
     }
 
+    @Override
+    public Direction getDirection() {
+        return Direction.VERTICAL;
+    }
 }

@@ -1,6 +1,7 @@
 package me.zeroeightsix.jtcui.component;
 
 import me.zeroeightsix.jtcui.Fat;
+import me.zeroeightsix.jtcui.layout.Direction;
 import me.zeroeightsix.jtcui.layout.layouts.HorizontalLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
@@ -53,4 +54,8 @@ public class HBox extends DirectionalSpacedContainer {
         return layout;
     }
 
+    @Override
+    public Direction getDirection() {
+        return Direction.HORIZONTAL;
+    }
 }
