@@ -36,9 +36,9 @@ public class Launcher extends ApplicationAdapter {
 
         Pane pane = new Pane(new CenteredLayout(SelfSizingLayout.Type.EXPANDING), Fat.NO_FAT);
 
-        DirectionalSpacedContainer hBox = new HBox(SelfSizingLayout.Type.EXPANDING);
-		((HorizontalLayout) hBox.getLayout()).setSpacing(5);
-		((HorizontalLayout) hBox.getLayout()).setAlignment(Alignment.CENTER_LEFT);
+        HBox hBox = new HBox(SelfSizingLayout.Type.EXPANDING);
+		hBox.getHLayout().setSpacing(5);
+		hBox.getHLayout().setAlignment(Alignment.CENTER_LEFT);
         hBox.getChildren().add(new Button("Button 1"));
         hBox.getChildren().add(new Button("Button 2"));
 		SimpleContainer root = new SimpleContainer();

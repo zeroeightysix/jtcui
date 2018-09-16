@@ -35,7 +35,7 @@ public class HorizontalLayout extends AlignedSpacedLayout {
 
             AtomicReference<Double> placeX = new AtomicReference<>(alignment.isLeft() ? x : 0);
 
-            components.forEach(child -> {
+            components.stream().filter(Component::isVisible).forEach(child -> {
                 Optional.ofNullable(growMap.get(child)).ifPresent(grow -> child.getSpace().heightProperty().set(height * grow.getModifier()));
                 if (alignment.isTop())
                     child.getSpace().yProperty().set(y);
@@ -52,6 +52,7 @@ public class HorizontalLayout extends AlignedSpacedLayout {
             if (alignment.isRight() || alignment.isCenterHorizontal()) {
                 double posX = x - placeX.get() + (alignment.isRight() ? width : width / 2d);
                 for (Component child : components) {
+                    if (!child.isVisible()) continue;
                     child.getSpace().xProperty().set(posX);
                     posX += child.getSpace().widthProperty().get() + getSpacing();
                 }

@@ -81,4 +81,14 @@ public interface Component {
      */
     Component explore(double x, double y);
 
+    /**
+     * @param visible The new value for this component's visibility.
+     */
+    void setVisible(boolean visible);
+
+    /**
+     * @return Whether or not this component is visible.
+     */
+    boolean isVisible();
+
 }

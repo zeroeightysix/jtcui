@@ -35,7 +35,7 @@ public class VerticalLayout extends AlignedSpacedLayout {
 
             AtomicReference<Double> placeY = new AtomicReference<>(alignment.isTop() ? y : 0);
 
-            components.forEach(child -> {
+            components.stream().filter(Component::isVisible).forEach(child -> {
                 Optional.ofNullable(growMap.get(child)).ifPresent(grow -> child.getSpace().widthProperty().set(width * grow.getModifier()));
                 if (alignment.isLeft())
                     child.getSpace().xProperty().set(x);
@@ -52,6 +52,7 @@ public class VerticalLayout extends AlignedSpacedLayout {
             if (alignment.isBottom() || alignment.isCenterVertical()) {
                 double posY = y - placeY.get() + (alignment.isBottom() ? height : height / 2d);
                 for (Component child : components) {
+                    if (!child.isVisible()) continue;
                     child.getSpace().yProperty().set(posY);
                     posY += child.getSpace().heightProperty().get() + getSpacing();
                 }

@@ -25,6 +25,8 @@ public class BaseComponent implements Component {
     private Layout layout;
     private final ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
 
+    private boolean visible = true;
+
     public BaseComponent() {
         this(0, 0);
     }
@@ -91,4 +93,12 @@ public class BaseComponent implements Component {
         return mouseHandlers;
     }
 
+    @Override
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
 }
