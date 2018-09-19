@@ -26,6 +26,17 @@ public class Button extends SimpleComponent {
 //        getRequirements().setMinimumHeight(36);
         getRequirements().setMinimumHeight(20);
         updateSizes();
+        getMouseHandlers().add(new MouseHandler() {
+            @Override
+            public void onMouse(MouseAction action, int x, int y, int button) {
+                if (action == MouseAction.DOWN) getAction().accept(Button.this);
+            }
+
+            @Override
+            public void onScroll(int scrolled, int x, int y) {
+
+            }
+        });
     }
 
     public Button(int x, int y, String text) {

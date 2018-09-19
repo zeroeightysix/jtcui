@@ -57,6 +57,10 @@ public class SimpleComponent extends BaseComponent implements Toggleable, Labele
         this.action = action;
     }
 
+    protected Consumer<SimpleComponent> getAction() {
+        return action;
+    }
+
     @Override
     @NotNull
     public String getText() {

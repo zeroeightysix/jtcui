@@ -19,6 +19,8 @@ import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.FixedSelfSizingLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Launcher extends ApplicationAdapter {
 
 	public static OrthographicCamera camera;
@@ -42,10 +44,18 @@ public class Launcher extends ApplicationAdapter {
 
         HBox hBox = new HBox(SelfSizingLayout.Type.EXPANDING);
 		hBox.getHLayout().setSpacing(5);
-		hBox.getHLayout().setAlignment(Alignment.CENTER);
-        hBox.getChildren().add(new Button("Button 1"));
-        hBox.getChildren().add(new Button("Button 2"));
-		SimpleContainer root = new SimpleContainer();
+		hBox.getHLayout().setAlignment(Alignment.TOP_LEFT);
+
+        AtomicInteger count = new AtomicInteger(0);
+		Button button1 = new Button("Next Alignment");
+		button1.setOnAction(simpleComponent -> {
+		    if (count.get() >= Alignment.values().length-1) count.set(-1);
+		    hBox.getHLayout().setAlignment(Alignment.values()[count.addAndGet(1)]);
+		    hBox.getHLayout().organise(hBox);
+        });
+        hBox.getChildren().add(button1);
+
+        SimpleContainer root = new SimpleContainer();
 		root.setLayout(new FixedSelfSizingLayout(SelfSizingLayout.Type.EXPANDING));
 
 		pane.getChildren().add(hBox);
