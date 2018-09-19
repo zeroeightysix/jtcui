@@ -27,7 +27,7 @@ public class Space {
     }
 
     public Space withAdded(double x, double y, double width, double height) {
-        return new Space(parent, xProperty().get() + x, yProperty().get() + y, widthProperty().get() + width, heightProperty().get() + height);
+        return new Space(null, xProperty().get() + x, yProperty().get() + y, widthProperty().get() + width, heightProperty().get() + height);
     }
 
     public Space withoutFat(Fat fat) {
@@ -35,11 +35,11 @@ public class Space {
     }
 
     public Space withWidth(double newWidth) {
-        return new Space(parent, xProperty().get(), yProperty().get(), newWidth, heightProperty().get());
+        return new Space(null, xProperty().get(), yProperty().get(), newWidth, heightProperty().get());
     }
 
     public Space withHeight(double newHeight) {
-        return new Space(parent, xProperty().get(), yProperty().get(), widthProperty().get(), newHeight);
+        return new Space(null, xProperty().get(), yProperty().get(), widthProperty().get(), newHeight);
     }
 
     public Space withoutFat() {
@@ -113,7 +113,8 @@ public class Space {
         @Override
         protected void invalidated() {
             super.invalidated();
-            JTC.update(JTC.getRootParent(parent));
+            if (parent != null)
+                JTC.update(JTC.getRootParent(parent));
         }
     }
 
