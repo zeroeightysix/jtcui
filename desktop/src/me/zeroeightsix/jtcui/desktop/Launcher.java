@@ -42,7 +42,7 @@ public class Launcher extends ApplicationAdapter {
 
         HBox hBox = new HBox(SelfSizingLayout.Type.EXPANDING);
 		hBox.getHLayout().setSpacing(5);
-		hBox.getHLayout().setAlignment(Alignment.TOP_LEFT);
+		hBox.getHLayout().setAlignment(Alignment.CENTER);
         hBox.getChildren().add(new Button("Button 1"));
         hBox.getChildren().add(new Button("Button 2"));
 		SimpleContainer root = new SimpleContainer();

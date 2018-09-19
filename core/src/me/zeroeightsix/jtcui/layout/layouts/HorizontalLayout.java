@@ -50,7 +50,7 @@ public class HorizontalLayout extends AlignedSpacedLayout {
             });
 
             if (alignment.isRight() || alignment.isCenterHorizontal()) {
-                double posX = x - placeX.get() + (alignment.isRight() ? width : width / 2d);
+                double posX = x - placeX.get() + (alignment.isRight() ? width : (width / 2d + placeX.get() / 2));
                 for (Component child : components) {
                     if (!child.isVisible()) continue;
                     child.getSpace().xProperty().set(posX);

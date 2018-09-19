@@ -50,7 +50,7 @@ public class VerticalLayout extends AlignedSpacedLayout {
             });
 
             if (alignment.isBottom() || alignment.isCenterVertical()) {
-                double posY = y - placeY.get() + (alignment.isBottom() ? height : height / 2d);
+                double posY = y - placeY.get() + (alignment.isBottom() ? height : (height / 2d + placeY.get() / 2));
                 for (Component child : components) {
                     if (!child.isVisible()) continue;
                     child.getSpace().yProperty().set(posY);
