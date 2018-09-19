@@ -1,5 +1,7 @@
 package me.zeroeightsix.jtcui.component;
 
+import com.sun.istack.internal.NotNull;
+
 import java.util.function.Consumer;
 
 /**
@@ -12,7 +14,7 @@ import java.util.function.Consumer;
 public class SimpleComponent extends BaseComponent implements Toggleable, Labeled, Actionable<SimpleComponent> {
     private boolean enabled;
     Consumer<SimpleComponent> action;
-    String text;
+    String text = "";
     boolean textWrapping = true;
 
     public SimpleComponent() {
@@ -56,12 +58,13 @@ public class SimpleComponent extends BaseComponent implements Toggleable, Labele
     }
 
     @Override
+    @NotNull
     public String getText() {
         return text;
     }
 
     @Override
-    public void setText(String text) {
+    public void setText(@NotNull String text) {
         this.text = text;
     }
 

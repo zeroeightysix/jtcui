@@ -17,22 +17,22 @@ public abstract class SimpleHandle<T extends Component> implements ComponentHand
 
     @Override
     public void draw(T component) {
-        drawBox(component.getSpace());
+        drawBox(component.getSpace(), 1, 1, 1);
     }
 
-    public static void drawBox(Space space) {
+    public static void drawBox(Space space, float red, float green, float blue) {
         float tX = Launcher.camera.position.x;
         float tY = Launcher.camera.position.y;
         int width = (int) space.widthProperty().get();
         int height = (int) space.heightProperty().get();
         renderer.begin(Launcher.camera.combined, GL11.GL_QUADS);
-        renderer.color(.4f, .121f, 1, 1);
+        renderer.color(red, green, blue, 1);
         renderer.vertex(tX, tY, 0);
-        renderer.color(.4f, .121f, 1, 1);
+        renderer.color(red, green, blue, 1);
         renderer.vertex(tX + width, tY, 0);
-        renderer.color(.4f, .121f, 1, 1);
+        renderer.color(red, green, blue, 1);
         renderer.vertex(tX + width, tY + height, 0);
-        renderer.color(.4f, .121f, 1, 1);
+        renderer.color(red, green, blue, 1);
         renderer.vertex(tX, tY + height, 0);
         renderer.end();
     }

@@ -34,6 +34,14 @@ public class Space {
         return withAdded(fat.getLeft(), fat.getTop(), -(fat.getRight() + fat.getLeft()), -(fat.getBottom() + fat.getTop()));
     }
 
+    public Space withWidth(double newWidth) {
+        return new Space(parent, xProperty().get(), yProperty().get(), newWidth, heightProperty().get());
+    }
+
+    public Space withHeight(double newHeight) {
+        return new Space(parent, xProperty().get(), yProperty().get(), widthProperty().get(), newHeight);
+    }
+
     public Space withoutFat() {
         return withoutFat(AbstractLayout.getFat(parent));
     }

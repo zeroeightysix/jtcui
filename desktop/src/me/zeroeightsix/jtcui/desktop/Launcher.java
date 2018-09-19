@@ -7,13 +7,17 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.JTCBuilder;
-import me.zeroeightsix.jtcui.component.*;
+import me.zeroeightsix.jtcui.component.DirectionalSpacedContainer;
+import me.zeroeightsix.jtcui.component.HBox;
+import me.zeroeightsix.jtcui.component.Pane;
+import me.zeroeightsix.jtcui.component.SimpleContainer;
 import me.zeroeightsix.jtcui.desktop.component.Button;
 import me.zeroeightsix.jtcui.desktop.component.Window;
 import me.zeroeightsix.jtcui.desktop.handle.DBoxHandle;
 import me.zeroeightsix.jtcui.layout.Alignment;
-import me.zeroeightsix.jtcui.layout.layouts.*;
-import org.lwjgl.Sys;
+import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
+import me.zeroeightsix.jtcui.layout.layouts.FixedSelfSizingLayout;
+import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
 public class Launcher extends ApplicationAdapter {
 
@@ -38,14 +42,14 @@ public class Launcher extends ApplicationAdapter {
 
         HBox hBox = new HBox(SelfSizingLayout.Type.EXPANDING);
 		hBox.getHLayout().setSpacing(5);
-		hBox.getHLayout().setAlignment(Alignment.CENTER_LEFT);
+		hBox.getHLayout().setAlignment(Alignment.TOP_LEFT);
         hBox.getChildren().add(new Button("Button 1"));
         hBox.getChildren().add(new Button("Button 2"));
 		SimpleContainer root = new SimpleContainer();
 		root.setLayout(new FixedSelfSizingLayout(SelfSizingLayout.Type.EXPANDING));
 
 		pane.getChildren().add(hBox);
-		Window window = new Window(10,10, 250, 150, 20, 5);
+		Window window = new Window(10, 10, 250, 150, "Window", 20, 5);
 		window.getChildren().add(pane);
 
 		root.getChildren().add(window);
@@ -54,7 +58,7 @@ public class Launcher extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
 		jtc.renderRecursive();
