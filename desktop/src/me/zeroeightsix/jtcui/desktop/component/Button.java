@@ -23,7 +23,6 @@ public class Button extends SimpleComponent {
 
     public Button(String text) {
         this(0, 0, text);
-//        getRequirements().setMinimumHeight(36);
         getRequirements().setMinimumHeight(20);
         updateSizes();
         getMouseHandlers().add(new MouseHandler() {
@@ -49,8 +48,7 @@ public class Button extends SimpleComponent {
 
     public void updateSizes() {
         glyphLayout.setText(Fonts.robotoCondensedBold, getText());
-        getRequirements().setMinimumWidth(100);
-//        getRequirements().setMinimumWidth((int) glyphLayout.width + (getIcon() == null ? 32 : 36));
+        getRequirements().setMinimumWidth(glyphLayout.width + 20);
         if (getSpace().widthProperty().get() < getRequirements().getMinimumWidth()) getSpace().widthProperty().set(getRequirements().getMinimumWidth());
         if (getSpace().heightProperty().get() < getRequirements().getMinimumHeight()) getSpace().heightProperty().set(getRequirements().getMinimumHeight());
         textWidth = (int) glyphLayout.width;

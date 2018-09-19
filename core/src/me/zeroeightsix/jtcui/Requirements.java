@@ -7,53 +7,53 @@ package me.zeroeightsix.jtcui;
  */
 public class Requirements {
 
-    private int minimumWidth;
-    private int minimumHeight;
-    private int maximumWidth;
-    private int maximumHeight;
+    private double minimumWidth;
+    private double minimumHeight;
+    private double maximumWidth;
+    private double maximumHeight;
 
-    public Requirements(int minimumWidth, int minimumHeight, int maximumWidth, int maximumHeight) {
+    public Requirements(double minimumWidth, double minimumHeight, double maximumWidth, double maximumHeight) {
         this.minimumWidth = minimumWidth;
         this.minimumHeight = minimumHeight;
         this.maximumWidth = maximumWidth;
         this.maximumHeight = maximumHeight;
     }
 
-    public int getMinimumHeight() {
+    public double getMinimumHeight() {
         return minimumHeight;
     }
 
-    public int getMinimumWidth() {
+    public double getMinimumWidth() {
         return minimumWidth;
     }
 
-    public int getMaximumHeight() {
+    public double getMaximumHeight() {
         return maximumHeight;
     }
 
-    public int getMaximumWidth() {
+    public double getMaximumWidth() {
         return maximumWidth;
     }
 
-    public void setMinimumWidth(int minimumWidth) {
+    public void setMinimumWidth(double minimumWidth) {
         this.minimumWidth = minimumWidth;
     }
 
-    public void setMinimumHeight(int minimumHeight) {
+    public void setMinimumHeight(double minimumHeight) {
         this.minimumHeight = minimumHeight;
     }
 
-    public void setMaximumHeight(int maximumHeight) {
+    public void setMaximumHeight(double maximumHeight) {
         this.maximumHeight = maximumHeight;
     }
 
-    public void setMaximumWidth(int maximumWidth) {
+    public void setMaximumWidth(double maximumWidth) {
         this.maximumWidth = maximumWidth;
     }
 
     @Override
     public String toString() {
-        return String.format("Requirements[minW=%d, minH=%d, maxW=%d, maxH=%d]", getMinimumWidth(), getMinimumHeight(), getMaximumWidth(), getMaximumHeight());
+        return String.format("Requirements[minW=%f, minH=%f, maxW=%f, maxH=%f]", getMinimumWidth(), getMinimumHeight(), getMaximumWidth(), getMaximumHeight());
     }
 
 }
