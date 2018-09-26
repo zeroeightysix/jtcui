@@ -12,6 +12,7 @@ import me.zeroeightsix.jtcui.component.HBox;
 import me.zeroeightsix.jtcui.component.Pane;
 import me.zeroeightsix.jtcui.component.SimpleContainer;
 import me.zeroeightsix.jtcui.desktop.component.Button;
+import me.zeroeightsix.jtcui.desktop.component.Label;
 import me.zeroeightsix.jtcui.desktop.component.Window;
 import me.zeroeightsix.jtcui.desktop.handle.DBoxHandle;
 import me.zeroeightsix.jtcui.layout.Alignment;
@@ -54,6 +55,9 @@ public class Launcher extends ApplicationAdapter {
 		    hBox.getHLayout().organise(hBox);
         });
         hBox.getChildren().add(button1);
+
+        Label label = new Label("Hello world!");
+        hBox.getChildren().add(label);
 
         SimpleContainer root = new SimpleContainer();
 		root.setLayout(new FixedSelfSizingLayout(SelfSizingLayout.Type.EXPANDING));
