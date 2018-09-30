@@ -11,9 +11,7 @@ import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * The main JTC class. JTC, Just the core UI, is a dependency-less UI framework for integration anywhere.
@@ -25,6 +23,7 @@ public class JTC {
     private static boolean updating = false;
     public MouseHandler mouse;
     public RenderHandler render;
+    public boolean disableShiftedRendering = true;
     private final Container rootComponent = new JTCRootComponent();
 
     private final HashMap<Component, ComponentHandle> handleCache = new HashMap<>();
@@ -40,12 +39,42 @@ public class JTC {
     }
 
     private void renderRecursive(Component component) {
-        render.translate(component.getSpace().xProperty().get(), component.getSpace().yProperty().get());
-        getComponentHandle(component).draw(component);
-        if (component.getChildren() != null) {
-            component.getChildren().forEach(this::renderRecursive);
+        if (disableShiftedRendering) {
+            render.translate(component.getSpace().xProperty().get(), component.getSpace().yProperty().get());
+            boolean hasChildren = component.getChildren() != null;
+            getComponentHandle(component).draw(component);
+            if (hasChildren) {
+                component.getChildren().forEach(this::renderRecursive);
+            }
+            render.translate(-component.getSpace().xProperty().get(), -component.getSpace().yProperty().get());
+        } else {
+            Pair<ArrayList<Component>, ArrayList<Component>> pair = new Pair<>(new ArrayList<>(), new ArrayList<>());
+            populateRenderPair(pair, component);
+            for (int i = 0; i < pair.key.size(); i++) {
+                Component a = pair.key.get(i);
+                Component b = pair.value.get(i);
+                if (a != b) {
+                    int at = pair.key.indexOf(b);
+                    pair.key.remove(a);
+                    pair.key.add(at, a);
+                }
+            }
+
+            for (Component c : pair.key) {
+                Point point = getRealPosition(c);
+                render.translate(point.getX(), point.getY());
+                getComponentHandle(c).draw(c);
+                render.translate(-point.getX(), -point.getY());
+            }
         }
-        render.translate(-component.getSpace().xProperty().get(), -component.getSpace().yProperty().get());
+    }
+
+    private void populateRenderPair(Pair<ArrayList<Component>, ArrayList<Component>> pair, Component component) {
+        pair.key.add(component);
+        pair.value.add(getParentUp(component, getComponentHandle(component).getRenderLevel(component)));
+        if (component.getChildren() != null) {
+            for (Component c : component.getChildren()) populateRenderPair(pair, c);
+        }
     }
 
     /**
@@ -147,6 +176,12 @@ public class JTC {
         return component;
     }
 
+    public static Component getParentUp(Component component, int levels) {
+        while (levels-- > 0 && component.getParent() != null)
+            component = component.getParent();
+        return component;
+    }
+
     /**
      * Updates the root component
      */
@@ -183,22 +218,7 @@ public class JTC {
         public JTCRootComponent() {
             super(0, 0);
             setLayout(new CenteredLayout(SelfSizingLayout.Type.EXPANDING));
-            handle = new ComponentHandle() {
-                @Override
-                public void draw(Component component) {
-
-                }
-
-                @Override
-                public void onMouse(Component component, MouseHandler.MouseAction action, int x, int y, int button) {
-
-                }
-
-                @Override
-                public void onScroll(Component component, int scrolled, int x, int y) {
-
-                }
-            };
+            handle = ComponentHandle.EMPTY_HANDLE;
         }
 
         @Override
@@ -218,6 +238,16 @@ public class JTC {
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Install {
         Class<? extends ComponentHandle> value();
+    }
+
+    private class Pair<K, V> {
+        K key;
+        V value;
+
+        public Pair(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
     }
 
 }

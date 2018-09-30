@@ -3,6 +3,7 @@ package me.zeroeightsix.jtcui.desktop.component;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import me.zeroeightsix.jtcui.JTC;
+import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.component.SimpleComponent;
 import me.zeroeightsix.jtcui.desktop.Fonts;
 import me.zeroeightsix.jtcui.desktop.handle.SimpleHandle;
@@ -94,6 +95,11 @@ public class Button extends SimpleComponent {
         @Override
         public void onScroll(Button component, int scrolled, int x, int y) {
 
+        }
+
+        @Override
+        public int getRenderLevel(Component component) {
+            return 0;
         }
     }
 

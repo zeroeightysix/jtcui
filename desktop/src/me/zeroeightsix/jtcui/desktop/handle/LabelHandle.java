@@ -1,5 +1,6 @@
 package me.zeroeightsix.jtcui.desktop.handle;
 
+import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.desktop.Fonts;
 import me.zeroeightsix.jtcui.desktop.component.Label;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
@@ -22,5 +23,10 @@ public class LabelHandle implements ComponentHandle<Label> {
     @Override
     public void onScroll(Label component, int scrolled, int x, int y) {
 
+    }
+
+    @Override
+    public int getRenderLevel(Component component) {
+        return 0;
     }
 }
