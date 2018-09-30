@@ -5,7 +5,7 @@ import me.zeroeightsix.jtcui.component.AbstractDraggable;
 /**
  * @author 086
  */
-public abstract class DraggableHandle<T extends AbstractDraggable> implements ComponentHandle<T> {
+public abstract class DraggableHandle<T extends AbstractDraggable> extends EmptyComponentHandle<T> {
     @Override
     public void onMouse(T component, MouseHandler.MouseAction action, int x, int y, int button) {
         if (action == MouseHandler.MouseAction.DOWN && component.getDragSpace().isPointInside(x, y)) {

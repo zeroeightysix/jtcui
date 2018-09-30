@@ -3,7 +3,6 @@ package me.zeroeightsix.jtcui.desktop.component;
 import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.component.AbstractDraggable;
-import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.desktop.Fonts;
 import me.zeroeightsix.jtcui.desktop.handle.SimpleHandle;
 import me.zeroeightsix.jtcui.handle.DraggableHandle;
@@ -39,16 +38,6 @@ public class Window extends AbstractDraggable {
         @Override
         public void onMouse(Window component, MouseHandler.MouseAction action, int x, int y, int button) {
             super.onMouse(component, action, x, y, button);
-        }
-
-        @Override
-        public void onScroll(Window component, int scrolled, int x, int y) {
-
-        }
-
-        @Override
-        public int getRenderLevel(Component component) {
-            return 0;
         }
 
     }

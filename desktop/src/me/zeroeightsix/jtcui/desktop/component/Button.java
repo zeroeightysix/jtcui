@@ -3,11 +3,10 @@ package me.zeroeightsix.jtcui.desktop.component;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import me.zeroeightsix.jtcui.JTC;
-import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.component.SimpleComponent;
 import me.zeroeightsix.jtcui.desktop.Fonts;
 import me.zeroeightsix.jtcui.desktop.handle.SimpleHandle;
-import me.zeroeightsix.jtcui.handle.ComponentHandle;
+import me.zeroeightsix.jtcui.handle.EmptyComponentHandle;
 import me.zeroeightsix.jtcui.handle.MouseHandler;
 
 /**
@@ -69,8 +68,7 @@ public class Button extends SimpleComponent {
         updateSizes();
     }
 
-    public static class ButtonHandle implements ComponentHandle<Button> {
-
+    public static class ButtonHandle extends EmptyComponentHandle<Button> {
         @Override
         public void draw(Button component) {
             int red = component.isPressed ? 0 : 1;
@@ -90,16 +88,6 @@ public class Button extends SimpleComponent {
                     component.isPressed = false;
                     break;
             }
-        }
-
-        @Override
-        public void onScroll(Button component, int scrolled, int x, int y) {
-
-        }
-
-        @Override
-        public int getRenderLevel(Component component) {
-            return 0;
         }
     }
 

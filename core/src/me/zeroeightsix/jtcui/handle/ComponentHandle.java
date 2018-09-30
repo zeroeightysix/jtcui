@@ -9,23 +9,12 @@ import me.zeroeightsix.jtcui.component.Component;
  */
 public interface ComponentHandle<T extends Component> {
 
-    ComponentHandle<Component> EMPTY_HANDLE = new ComponentHandle<Component>() {
-        @Override
-        public void draw(Component component) {}
-        @Override
-        public void onMouse(Component component, MouseHandler.MouseAction action, int x, int y, int button) {}
-        @Override
-        public void onScroll(Component component, int scrolled, int x, int y) {}
-
-        @Override
-        public int getRenderLevel(Component component) {
-            return 0;
-        }
-    };
+    EmptyComponentHandle EMPTY_HANDLE = new EmptyComponentHandle();
 
     void draw(T component);
     void onMouse(T component, MouseHandler.MouseAction action, int x, int y, int button);
+    void onKey(T component, KeyHandler.KeyAction action, int key, char keyChar);
     void onScroll(T component, int scrolled, int x, int y);
 
-    int getRenderLevel(Component component);
+    int getRenderLevel(T component);
 }

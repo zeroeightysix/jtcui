@@ -14,7 +14,7 @@ import me.zeroeightsix.jtcui.component.SimpleContainer;
 import me.zeroeightsix.jtcui.desktop.component.Button;
 import me.zeroeightsix.jtcui.desktop.component.Label;
 import me.zeroeightsix.jtcui.desktop.component.Window;
-import me.zeroeightsix.jtcui.desktop.handle.DBoxHandle;
+import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.layout.Alignment;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.FixedSelfSizingLayout;
@@ -37,7 +37,7 @@ public class Launcher extends ApplicationAdapter {
 	    // For testing purposes
         jtc.mouse = new DebugMouseHandler(jtc);
 
-        jtc.install(DirectionalSpacedContainer.class, new DBoxHandle());
+        jtc.install(DirectionalSpacedContainer.class, ComponentHandle.EMPTY_HANDLE);
 
 	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
 
