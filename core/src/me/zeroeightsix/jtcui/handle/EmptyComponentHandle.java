@@ -11,11 +11,11 @@ public class EmptyComponentHandle<S extends Component> implements ComponentHandl
     }
 
     @Override
-    public void onMouse(S component, MouseHandler.MouseAction action, int x, int y, int button) {
+    public void onMouse(S component, InputHandler.MouseAction action, int x, int y, int button) {
     }
 
     @Override
-    public void onKey(S component, KeyHandler.KeyAction action, int key, char keyChar) {
+    public void onKey(S component, InputHandler.KeyAction action, int key, char keyChar) {
     }
 
     @Override

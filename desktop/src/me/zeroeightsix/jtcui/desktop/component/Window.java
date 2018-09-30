@@ -6,7 +6,7 @@ import me.zeroeightsix.jtcui.component.AbstractDraggable;
 import me.zeroeightsix.jtcui.desktop.Fonts;
 import me.zeroeightsix.jtcui.desktop.handle.SimpleHandle;
 import me.zeroeightsix.jtcui.handle.DraggableHandle;
-import me.zeroeightsix.jtcui.handle.MouseHandler;
+import me.zeroeightsix.jtcui.handle.InputHandler;
 
 /**
  * @author 086
@@ -36,7 +36,7 @@ public class Window extends AbstractDraggable {
         }
 
         @Override
-        public void onMouse(Window component, MouseHandler.MouseAction action, int x, int y, int button) {
+        public void onMouse(Window component, InputHandler.MouseAction action, int x, int y, int button) {
             super.onMouse(component, action, x, y, button);
         }
 

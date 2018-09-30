@@ -3,7 +3,7 @@ package me.zeroeightsix.jtcui.component;
 import me.zeroeightsix.jtcui.Requirements;
 import me.zeroeightsix.jtcui.Space;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
-import me.zeroeightsix.jtcui.handle.MouseHandler;
+import me.zeroeightsix.jtcui.handle.InputHandler;
 import me.zeroeightsix.jtcui.layout.layouts.Layout;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class BaseComponent implements Component {
 
     private Component parent;
     private Layout layout;
-    private final ArrayList<MouseHandler> mouseHandlers = new ArrayList<>();
+    private final ArrayList<InputHandler> inputHandlers = new ArrayList<>();
 
     private boolean visible = true;
 
@@ -89,8 +89,8 @@ public class BaseComponent implements Component {
     }
 
     @Override
-    public ArrayList<MouseHandler> getMouseHandlers() {
-        return mouseHandlers;
+    public ArrayList<InputHandler> getInputHandlers() {
+        return inputHandlers;
     }
 
     @Override

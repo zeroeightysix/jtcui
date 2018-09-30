@@ -12,8 +12,8 @@ public interface ComponentHandle<T extends Component> {
     EmptyComponentHandle EMPTY_HANDLE = new EmptyComponentHandle();
 
     void draw(T component);
-    void onMouse(T component, MouseHandler.MouseAction action, int x, int y, int button);
-    void onKey(T component, KeyHandler.KeyAction action, int key, char keyChar);
+    void onMouse(T component, InputHandler.MouseAction action, int x, int y, int button);
+    void onKey(T component, InputHandler.KeyAction action, int key, char keyChar);
     void onScroll(T component, int scrolled, int x, int y);
 
     int getRenderLevel(T component);

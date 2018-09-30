@@ -35,7 +35,7 @@ public class Launcher extends ApplicationAdapter {
 
 	    jtc = JTCBuilder.builder(new GuiRenderer()).build();
 	    // For testing purposes
-        jtc.mouse = new DebugMouseHandler(jtc);
+        jtc.input = new DebugInputHandler(jtc);
 
         jtc.install(DirectionalSpacedContainer.class, ComponentHandle.EMPTY_HANDLE);
 

@@ -7,17 +7,26 @@ import me.zeroeightsix.jtcui.component.Component;
 import java.util.Optional;
 
 /**
- * The default JTC mouse handler. Implements mouse actions.
+ * The default JTC input handler. Implements input actions.
  *
  * @author 086
  */
-public class JTCMouseHandler implements MouseHandler {
+public class JTCInputHandler implements InputHandler {
 
     final JTC theJTC;
-    private Component focus;
+    private Component held;
+    private Component lastInteracted = null;
 
-    public JTCMouseHandler(JTC theJTC) {
+    public JTCInputHandler(JTC theJTC) {
         this.theJTC = theJTC;
+    }
+
+    @Override
+    public void onKey(KeyAction action, int key, char keyChar) {
+        if (lastInteracted != null) {
+            theJTC.getComponentHandle(lastInteracted).onKey(lastInteracted, action, key, keyChar);
+            lastInteracted.getInputHandlers().forEach(inputHandler -> inputHandler.onKey(action, key, keyChar));
+        }
     }
 
     @Override
@@ -25,31 +34,31 @@ public class JTCMouseHandler implements MouseHandler {
         funnel(theJTC, x, y).ifPresent(c -> {
             switch (action) {
                 case DOWN:
-                    focus = c;
+                    held = lastInteracted = c;
                     break;
                 case DRAG:
                 case RELEASE:
-                    c = focus;
+                    c = held;
                     break;
             }
 
             Point position = JTC.getRealPosition(c);
             int nx = x - position.getX(), ny = y - position.getY();
             theJTC.getComponentHandle(c).onMouse(c, action, nx, ny, button);
-            c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onMouse(action, nx, ny, button));
+            c.getInputHandlers().forEach(inputHandler -> inputHandler.onMouse(action, nx, ny, button));
 
             if (action == MouseAction.RELEASE)
-                focus = null;
+                held = null;
         });
     }
 
     @Override
     public void onScroll(int scrolled, int x, int y) {
-        coalesce(focus, funnel(theJTC, x, y).orElse(null)).ifPresent(c -> {
+        coalesce(held, funnel(theJTC, x, y).orElse(null)).ifPresent(c -> {
             Point position = JTC.getRealPosition(c);
             int nx = x - position.getX(), ny = y - position.getY();
             theJTC.getComponentHandle(c).onScroll(c, scrolled, nx, ny);
-            c.getMouseHandlers().forEach(mouseHandler -> mouseHandler.onScroll(scrolled, nx, ny));
+            c.getInputHandlers().forEach(inputHandler -> inputHandler.onScroll(scrolled, nx, ny));
         });
     }
 
@@ -58,7 +67,7 @@ public class JTCMouseHandler implements MouseHandler {
                 || y < theJTC.getRootComponent().getSpace().yProperty().get())
             return Optional.empty();
         Component c = theJTC.getRootComponent().explore(x - theJTC.getRootComponent().getSpace().xProperty().get(), y - theJTC.getRootComponent().getSpace().yProperty().get());
-        if (c.getMouseHandlers() != null) return Optional.of(c);
+        if (c.getInputHandlers() != null) return Optional.of(c);
         return Optional.empty();
     }
 

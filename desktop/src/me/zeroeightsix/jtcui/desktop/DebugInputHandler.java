@@ -2,7 +2,7 @@ package me.zeroeightsix.jtcui.desktop;
 
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.component.Component;
-import me.zeroeightsix.jtcui.handle.JTCMouseHandler;
+import me.zeroeightsix.jtcui.handle.JTCInputHandler;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -10,8 +10,8 @@ import java.util.Optional;
 /**
  * @author 086
  */
-public class DebugMouseHandler extends JTCMouseHandler {
-    public DebugMouseHandler(JTC theJTC) {
+public class DebugInputHandler extends JTCInputHandler {
+    public DebugInputHandler(JTC theJTC) {
         super(theJTC);
     }
 

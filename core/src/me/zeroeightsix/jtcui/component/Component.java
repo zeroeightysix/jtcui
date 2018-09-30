@@ -5,7 +5,7 @@ import com.sun.istack.internal.Nullable;
 import me.zeroeightsix.jtcui.Requirements;
 import me.zeroeightsix.jtcui.Space;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
-import me.zeroeightsix.jtcui.handle.MouseHandler;
+import me.zeroeightsix.jtcui.handle.InputHandler;
 import me.zeroeightsix.jtcui.layout.layouts.Layout;
 
 import java.util.List;
@@ -53,10 +53,10 @@ public interface Component {
     ComponentHandle getHandle();
 
     /**
-     * @return A list of this components mouse handlers
+     * @return A list of this components input handlers
      */
     @NotNull
-    List<MouseHandler> getMouseHandlers();
+    List<InputHandler> getInputHandlers();
 
     /**
      * Sets a new parent for this component. Be careful as this method is not supposed to modify children lists - it should only be used when modifying containers.

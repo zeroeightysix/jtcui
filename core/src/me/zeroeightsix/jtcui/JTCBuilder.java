@@ -1,7 +1,7 @@
 package me.zeroeightsix.jtcui;
 
-import me.zeroeightsix.jtcui.handle.JTCMouseHandler;
-import me.zeroeightsix.jtcui.handle.MouseHandler;
+import me.zeroeightsix.jtcui.handle.JTCInputHandler;
+import me.zeroeightsix.jtcui.handle.InputHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 
 /**
@@ -10,7 +10,7 @@ import me.zeroeightsix.jtcui.handle.RenderHandler;
 public class JTCBuilder {
 
     private RenderHandler renderHandler;
-    private MouseHandler mouseHandler = null;
+    private InputHandler inputHandler = null;
 
     JTCBuilder(RenderHandler renderHandler) {
         this.renderHandler = renderHandler;
@@ -25,15 +25,15 @@ public class JTCBuilder {
         return this;
     }
 
-    public JTCBuilder withMouseHandler(MouseHandler mouseHandler) {
-        this.mouseHandler = mouseHandler;
+    public JTCBuilder withInputHandler(InputHandler inputHandler) {
+        this.inputHandler = inputHandler;
         return this;
     }
 
     public JTC build() {
         JTC jtc = new JTC();
         jtc.render = renderHandler;
-        jtc.mouse = mouseHandler == null ? new JTCMouseHandler(jtc) : mouseHandler;
+        jtc.input = inputHandler == null ? new JTCInputHandler(jtc) : inputHandler;
         return jtc;
     }
 

@@ -7,7 +7,7 @@ import me.zeroeightsix.jtcui.component.SimpleComponent;
 import me.zeroeightsix.jtcui.desktop.Fonts;
 import me.zeroeightsix.jtcui.desktop.handle.SimpleHandle;
 import me.zeroeightsix.jtcui.handle.EmptyComponentHandle;
-import me.zeroeightsix.jtcui.handle.MouseHandler;
+import me.zeroeightsix.jtcui.handle.InputHandler;
 
 /**
  * @author 086
@@ -25,7 +25,7 @@ public class Button extends SimpleComponent {
         this(0, 0, text);
         getRequirements().setMinimumHeight(20);
         updateSizes();
-        getMouseHandlers().add(new MouseHandler() {
+        getInputHandlers().add(new InputHandler() {
             @Override
             public void onMouse(MouseAction action, int x, int y, int button) {
                 if (action == MouseAction.DOWN) getAction().accept(Button.this);
@@ -33,6 +33,11 @@ public class Button extends SimpleComponent {
 
             @Override
             public void onScroll(int scrolled, int x, int y) {
+
+            }
+
+            @Override
+            public void onKey(KeyAction action, int key, char keyChar) {
 
             }
         });
@@ -79,7 +84,7 @@ public class Button extends SimpleComponent {
         }
 
         @Override
-        public void onMouse(Button component, MouseHandler.MouseAction action, int x, int y, int button) {
+        public void onMouse(Button component, InputHandler.MouseAction action, int x, int y, int button) {
             switch (action) {
                 case DOWN:
                     component.isPressed = true;

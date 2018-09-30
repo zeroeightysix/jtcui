@@ -4,7 +4,7 @@ import me.zeroeightsix.jtcui.component.Component;
 import me.zeroeightsix.jtcui.component.Container;
 import me.zeroeightsix.jtcui.component.SimpleContainer;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
-import me.zeroeightsix.jtcui.handle.MouseHandler;
+import me.zeroeightsix.jtcui.handle.InputHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
@@ -21,7 +21,7 @@ import java.util.*;
 public class JTC {
 
     private static boolean updating = false;
-    public MouseHandler mouse;
+    public InputHandler input;
     public RenderHandler render;
     public boolean disableShiftedRendering = true;
     private final Container rootComponent = new JTCRootComponent();
