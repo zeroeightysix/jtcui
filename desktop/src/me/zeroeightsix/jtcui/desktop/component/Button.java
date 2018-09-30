@@ -23,6 +23,14 @@ public class Button extends SimpleComponent {
 
     public Button(String text) {
         this(0, 0, text);
+    }
+
+    public Button(int x, int y, String text) {
+        this(x, y, 0, 0, text);
+    }
+
+    public Button(int x, int y, int width, int height, String text) {
+        super(x, y, width, height, text);
         getRequirements().setMinimumHeight(20);
         updateSizes();
         getInputHandlers().add(new InputHandler() {
@@ -41,14 +49,6 @@ public class Button extends SimpleComponent {
 
             }
         });
-    }
-
-    public Button(int x, int y, String text) {
-        this(x, y, 0, 0, text);
-    }
-
-    public Button(int x, int y, int width, int height, String text) {
-        super(x, y, width, height, text);
     }
 
     public void updateSizes() {
