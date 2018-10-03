@@ -1,7 +1,5 @@
 package me.zeroeightsix.jtcui.component;
 
-import com.sun.istack.internal.NotNull;
-import com.sun.istack.internal.Nullable;
 import me.zeroeightsix.jtcui.Requirements;
 import me.zeroeightsix.jtcui.Space;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
@@ -29,19 +27,16 @@ public interface Component {
     /**
      * @return This components parent, if any.
      */
-    @Nullable
     Component getParent();
 
     /**
      * @return A list of this components children, if any.
      */
-    @Nullable
     List<Component> getChildren();
 
     /**
      * @return This components layout
      */
-    @Nullable
     Layout getLayout();
 
     /**
@@ -49,13 +44,11 @@ public interface Component {
      *
      * @return The handle for this component
      */
-    @Nullable
     ComponentHandle getHandle();
 
     /**
      * @return A list of this components input handlers
      */
-    @NotNull
     List<InputHandler> getInputHandlers();
 
     /**
@@ -64,12 +57,12 @@ public interface Component {
      * @param component The new parent of this component
      * @see SimpleContainer
      */
-    void setParent(@Nullable Component component);
+    void setParent(Component component);
 
     /**
      * @param layout The new layout for this component
      */
-    void setLayout(@Nullable Layout layout);
+    void setLayout(Layout layout);
 
     /**
      * Find the component at position (x, y) with origin being this components origin.
