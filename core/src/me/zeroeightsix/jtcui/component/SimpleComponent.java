@@ -1,7 +1,5 @@
 package me.zeroeightsix.jtcui.component;
 
-import com.sun.istack.internal.NotNull;
-
 import java.util.function.Consumer;
 
 /**
@@ -62,13 +60,12 @@ public class SimpleComponent extends BaseComponent implements Toggleable, Labele
     }
 
     @Override
-    @NotNull
     public String getText() {
         return text;
     }
 
     @Override
-    public void setText(@NotNull String text) {
+    public void setText(String text) {
         this.text = text;
     }
 
