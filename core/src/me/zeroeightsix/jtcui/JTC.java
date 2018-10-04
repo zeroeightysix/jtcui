@@ -8,6 +8,7 @@ import me.zeroeightsix.jtcui.handle.InputHandler;
 import me.zeroeightsix.jtcui.handle.RenderHandler;
 import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
+import me.zeroeightsix.jtcui.manager.RenderManager;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -21,9 +22,12 @@ import java.util.*;
 public class JTC {
 
     private static boolean updating = false;
+
     public InputHandler input;
     public RenderHandler render;
-    public boolean disableShiftedRendering = true;
+    public RenderManager renderManager;
+//    public Explorer explorer;
+
     private final Container rootComponent = new JTCRootComponent();
 
     private final HashMap<Component, ComponentHandle> handleCache = new HashMap<>();
@@ -39,42 +43,7 @@ public class JTC {
     }
 
     private void renderRecursive(Component component) {
-        if (disableShiftedRendering) {
-            render.translate(component.getSpace().xProperty().get(), component.getSpace().yProperty().get());
-            boolean hasChildren = component.getChildren() != null;
-            getComponentHandle(component).draw(component);
-            if (hasChildren) {
-                component.getChildren().forEach(this::renderRecursive);
-            }
-            render.translate(-component.getSpace().xProperty().get(), -component.getSpace().yProperty().get());
-        } else {
-            Pair<ArrayList<Component>, ArrayList<Component>> pair = new Pair<>(new ArrayList<>(), new ArrayList<>());
-            populateRenderPair(pair, component);
-            for (int i = 0; i < pair.key.size(); i++) {
-                Component a = pair.key.get(i);
-                Component b = pair.value.get(i);
-                if (a != b) {
-                    int at = pair.key.indexOf(b);
-                    pair.key.remove(a);
-                    pair.key.add(at, a);
-                }
-            }
-
-            for (Component c : pair.key) {
-                Point point = getRealPosition(c);
-                render.translate(point.getX(), point.getY());
-                getComponentHandle(c).draw(c);
-                render.translate(-point.getX(), -point.getY());
-            }
-        }
-    }
-
-    private void populateRenderPair(Pair<ArrayList<Component>, ArrayList<Component>> pair, Component component) {
-        pair.key.add(component);
-        pair.value.add(getParentUp(component, getComponentHandle(component).getRenderLevel(component)));
-        if (component.getChildren() != null) {
-            for (Component c : component.getChildren()) populateRenderPair(pair, c);
-        }
+        renderManager.renderRecursive(component);
     }
 
     /**
@@ -238,16 +207,6 @@ public class JTC {
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Install {
         Class<? extends ComponentHandle> value();
-    }
-
-    private class Pair<K, V> {
-        K key;
-        V value;
-
-        public Pair(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
     }
 
 }
