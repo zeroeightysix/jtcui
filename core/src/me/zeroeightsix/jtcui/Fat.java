@@ -67,6 +67,10 @@ public class Fat {
         return top;
     }
 
+    public static Fat of(int fat) {
+        return new Fat(fat, fat, fat, fat);
+    }
+
     @Override
     public String toString() {
         return String.format("Fat[left=%d, right=%d, top=%d, bottom=%d]", getLeft(), getRight(), getTop(), getBottom());
