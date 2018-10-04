@@ -6,6 +6,7 @@ package me.zeroeightsix.jtcui.layout;
 public class Grow {
 
     public static final Grow NO_GROW = new Grow(-1);
+    public static final Grow FULL_GROW = new Grow(1);
 
     float modifier;
 
