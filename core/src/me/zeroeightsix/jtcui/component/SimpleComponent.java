@@ -11,7 +11,7 @@ import java.util.function.Consumer;
  */
 public class SimpleComponent extends BaseComponent implements Toggleable, Labeled, Actionable<SimpleComponent> {
     private boolean enabled;
-    Consumer<SimpleComponent> action;
+    Consumer<SimpleComponent> action = simpleComponent -> {};
     String text = "";
     boolean textWrapping = true;
 
