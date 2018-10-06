@@ -79,4 +79,7 @@ public class JTCInputHandler implements InputHandler {
         return theJTC;
     }
 
+    public Component getLastInteracted() {
+        return lastInteracted;
+    }
 }
