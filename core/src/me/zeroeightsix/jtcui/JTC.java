@@ -151,6 +151,11 @@ public class JTC {
         return component;
     }
 
+    public static Component getParentOfType(Component component, Class<? super Component> parentClass) {
+        while (component.getParent() != null && component.getClass() != parentClass) component = component.getParent();
+        return component;
+    }
+
     /**
      * Updates the root component
      */
