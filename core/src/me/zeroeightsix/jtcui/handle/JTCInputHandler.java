@@ -16,6 +16,7 @@ public class JTCInputHandler implements InputHandler {
     final JTC theJTC;
     private Component held;
     private Component lastInteracted = null;
+    private Component mouseOver = null;
 
     public JTCInputHandler(JTC theJTC) {
         this.theJTC = theJTC;
@@ -44,6 +45,17 @@ public class JTCInputHandler implements InputHandler {
 
             Point position = JTC.getRealPosition(c);
             int nx = x - position.getX(), ny = y - position.getY();
+
+            if (action == MouseAction.MOVE && mouseOver != c) {
+                Point position2 = JTC.getRealPosition(c);
+                int nx2 = x - position2.getX(), ny2 = y - position2.getY();
+
+                Component oldMouseOver = mouseOver;
+                mouseOver = c; // We do this assignment so if the component's handle desires to know what component the mouse is in now, they can call #getMouseOver
+                theJTC.getComponentHandle(c).onMouse(oldMouseOver, MouseAction.LEAVE_COMPONENT, nx2, ny2, button);
+                theJTC.getComponentHandle(c).onMouse(c, MouseAction.ENTER_COMPONENT, nx, ny, button);
+            }
+
             theJTC.getComponentHandle(c).onMouse(c, action, nx, ny, button);
             c.getInputHandlers().forEach(inputHandler -> inputHandler.onMouse(action, nx, ny, button));
 
@@ -81,5 +93,9 @@ public class JTCInputHandler implements InputHandler {
 
     public Component getLastInteracted() {
         return lastInteracted;
+    }
+
+    public Component getMouseOver() {
+        return mouseOver;
     }
 }

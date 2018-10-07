@@ -30,7 +30,7 @@ public interface InputHandler {
     void onKey(KeyAction action, int key, char keyChar);
 
     enum MouseAction {
-        DOWN, MOVE, DRAG, RELEASE
+        DOWN, MOVE, DRAG, RELEASE, LEAVE_COMPONENT, ENTER_COMPONENT;
     }
 
     enum KeyAction {
