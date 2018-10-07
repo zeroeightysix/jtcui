@@ -52,7 +52,8 @@ public class JTCInputHandler implements InputHandler {
 
                 Component oldMouseOver = mouseOver;
                 mouseOver = c; // We do this assignment so if the component's handle desires to know what component the mouse is in now, they can call #getMouseOver
-                theJTC.getComponentHandle(oldMouseOver).onMouse(oldMouseOver, MouseAction.LEAVE_COMPONENT, nx2, ny2, button);
+                if (oldMouseOver != null)
+                    theJTC.getComponentHandle(oldMouseOver).onMouse(oldMouseOver, MouseAction.LEAVE_COMPONENT, nx2, ny2, button);
                 theJTC.getComponentHandle(c).onMouse(c, MouseAction.ENTER_COMPONENT, nx, ny, button);
             }
 
