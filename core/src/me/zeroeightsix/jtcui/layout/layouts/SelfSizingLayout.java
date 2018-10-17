@@ -53,13 +53,16 @@ public abstract class SelfSizingLayout extends AbstractLayout {
 
     @Override
     public void update(Component component) {
-        switch (type) { // Fixed layouts do not self-size
+        switch (type) {
             case PACKING:
                 organise(component);
                 pack(component);
                 break;
             case EXPANDING:
                 expand(component);
+                organise(component);
+                break;
+            case FIXED: // Fixed layouts do not self-size
                 organise(component);
                 break;
         }
