@@ -42,6 +42,10 @@ public class Space {
         return new Space(null, xProperty().get(), yProperty().get(), widthProperty().get(), newHeight);
     }
 
+    public Space withSize(double width, double height) {
+        return new Space(null, xProperty().get(), yProperty().get(), width, height);
+    }
+
     public Space withoutFat() {
         return withoutFat(AbstractLayout.getFat(parent));
     }
@@ -103,6 +107,17 @@ public class Space {
     @Override
     public String toString() {
         return String.format("Space[x=%f, y=%f, width=%f, height=%f]", xProperty().get(), yProperty().get(), widthProperty().get(), heightProperty().get());
+    }
+
+    public void adaptTo(Space otherSpace) {
+        xProperty().set(otherSpace.xProperty().getValue());
+        yProperty().set(otherSpace.yProperty().getValue());
+        widthProperty().set(otherSpace.widthProperty().getValue());
+        heightProperty().set(otherSpace.heightProperty().getValue());
+    }
+
+    public Space copyNoParent() {
+        return new Space(parent, xProperty().get(), yProperty().get(), widthProperty().get(), heightProperty().get());
     }
 
     private class SimpleUpdatingDoubleProperty extends SimpleDoubleProperty {

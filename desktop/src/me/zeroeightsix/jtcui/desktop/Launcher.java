@@ -7,20 +7,18 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import me.zeroeightsix.jtcui.Fat;
 import me.zeroeightsix.jtcui.JTC;
 import me.zeroeightsix.jtcui.JTCBuilder;
+import me.zeroeightsix.jtcui.component.Container;
 import me.zeroeightsix.jtcui.component.DirectionalSpacedContainer;
 import me.zeroeightsix.jtcui.component.HBox;
-import me.zeroeightsix.jtcui.component.Pane;
-import me.zeroeightsix.jtcui.component.SimpleContainer;
 import me.zeroeightsix.jtcui.desktop.component.Button;
 import me.zeroeightsix.jtcui.desktop.component.Label;
 import me.zeroeightsix.jtcui.desktop.component.Window;
+import me.zeroeightsix.jtcui.desktop.handle.ColouredComponentHandle;
 import me.zeroeightsix.jtcui.handle.ComponentHandle;
 import me.zeroeightsix.jtcui.layout.Alignment;
-import me.zeroeightsix.jtcui.layout.layouts.CenteredLayout;
 import me.zeroeightsix.jtcui.layout.layouts.FixedSelfSizingLayout;
+import me.zeroeightsix.jtcui.layout.layouts.OriginLayout;
 import me.zeroeightsix.jtcui.layout.layouts.SelfSizingLayout;
-
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Launcher extends ApplicationAdapter {
 
@@ -38,36 +36,34 @@ public class Launcher extends ApplicationAdapter {
         jtc.input = new DebugInputHandler(jtc);
 
         jtc.install(DirectionalSpacedContainer.class, ComponentHandle.EMPTY_HANDLE);
+		jtc.install(HBox.class, new ColouredComponentHandle<>(1, 1, .6f));
 
-	    Gdx.input.setInputProcessor(new InputProcessor(jtc));
+		Gdx.input.setInputProcessor(new InputProcessor(jtc));
 
-        Pane pane = new Pane(new CenteredLayout(SelfSizingLayout.Type.EXPANDING), Fat.NO_FAT);
+		Container root = jtc.getRootComponent();
+        root.setLayout(new FixedSelfSizingLayout(SelfSizingLayout.Type.EXPANDING));
 
-        HBox hBox = new HBox(SelfSizingLayout.Type.EXPANDING);
-		hBox.getHLayout().setSpacing(5);
-		hBox.getHLayout().setAlignment(Alignment.TOP_LEFT);
+        Window window = new Window("A window", 20, 5);
+        window.setLayout(new OriginLayout(SelfSizingLayout.Type.PACKING));
 
-        AtomicInteger count = new AtomicInteger(0);
-		Button button1 = new Button("Next Alignment");
-		button1.setOnAction(simpleComponent -> {
-		    if (count.get() >= Alignment.values().length-1) count.set(-1);
-		    hBox.getHLayout().setAlignment(Alignment.values()[count.addAndGet(1)]);
-		    hBox.getHLayout().organise(hBox);
-        });
-        hBox.getChildren().add(button1);
+		HBox box = new HBox(Fat.of(5));
+		box.getHLayout().setSpacing(10);
+		Button button = new Button("A button");
+		final int[] step = {0};
+		button.setOnAction(simpleComponent -> {
+			int s = (++step[0]) % Alignment.values().length;
+			System.out.println(s);
+			box.getHLayout().setAlignment(Alignment.values()[s]);
+			box.getHLayout().organise(box);
+			step[0] = s;
+		});
+		Label label = new Label("A label");
+		box.getChildren().add(button);
+		box.getChildren().add(label);
 
-        Label label = new Label("Hello world!");
-        hBox.getChildren().add(label);
-
-        SimpleContainer root = new SimpleContainer();
-		root.setLayout(new FixedSelfSizingLayout(SelfSizingLayout.Type.EXPANDING));
-
-		pane.getChildren().add(hBox);
-		Window window = new Window(10, 10, 250, 150, "Window", 20, 5);
-		window.getChildren().add(pane);
+		window.getChildren().add(box);
 
 		root.getChildren().add(window);
-        jtc.getRootComponent().getChildren().add(root);
 	}
 
 	@Override

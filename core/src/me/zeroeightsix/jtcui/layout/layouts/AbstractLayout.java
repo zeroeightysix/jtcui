@@ -16,7 +16,7 @@ public abstract class AbstractLayout implements Layout {
         return (component instanceof Container) ? ((Container) component).getFat() : Fat.NO_FAT;
     }
 
-    protected Space getSlimSpace(Component component) {
+    protected static Space getSlimSpace(Component component) {
         return component.getSpace().withoutFat();
     }
 
